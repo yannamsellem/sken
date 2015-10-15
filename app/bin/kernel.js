@@ -91,24 +91,25 @@
 
 		Promise.resolve()
 			.then(function() {
-				self.appWillFinishLaunching();
+				return self.appWillFinishLaunching();
 			})
 			.then(function() {
-				if(global.config.session && global.config.session.enabled)
-							Session.init().setSession(self.app);
+				if(global.config.session && global.config.session.enabled) {
+					Session.init().setSession(self.app);
+				}
 
 				var dbPromise = Database.init()
 					.catch(function(error) {
 						debug('an error occurred during the kernel database initialization: ' + error.toString());
 					});
-				dbPromise.then(function() { self._initializeModules(); });
+				dbPromise.then(function() { return self._initializeModules(); });
 				return dbPromise;
 			})
 			.then(function() {
-				self.dbDidFinishLoading();
+				return self.dbDidFinishLoading();
 			})
 			.then(function() {
-				self.appDidFinishToLaunching();
+				return self.appDidFinishToLaunching();
 			})
 			.catch(function(error) {
 				debug('an error occurred during the kernel database initialization: ' + error.toString());

@@ -12,9 +12,9 @@
 
 /* Static method declartion */
 
-	CustomFS.getDirectoriesSync = function(scrPath) {
-		return fs.readdirSync(scrPath).filter(function(file) {
-			return fs.statSync(path.join(scrPath, file)).isDirectory();
+	CustomFS.getDirectoriesSync = function(srcPath) {
+		return fs.readdirSync(srcPath).filter(function(file) {
+			return fs.statSync(path.join(srcPath, file)).isDirectory();
 		});
 	};
 
@@ -28,4 +28,10 @@
 		} catch (e) {
 			return false;
 		}
+	};
+
+	CustomFS.getFilesSync = function(srcPath) {
+		return fs.readdirSync(srcPath).filter(function(file) {
+			return fs.statSync(path.join(srcPath, file)).isFile();
+		});
 	};

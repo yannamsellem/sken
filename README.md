@@ -28,7 +28,7 @@ This README would normally document whatever steps are necessary to get your app
 * yann_ams@icloud.com
 
 #### Arborescence
-|____.gitignore
+`|____.gitignore
 |____app
 | |____.DS_Store
 | |____app.js
@@ -73,4 +73,4 @@ This README would normally document whatever steps are necessary to get your app
 | | | | |____modules
 | | | | |____spec
 | | | |____styles
-| | |____views
+| | |____views`

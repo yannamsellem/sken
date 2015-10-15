@@ -28,50 +28,50 @@ This README would normally document whatever steps are necessary to get your app
 * yann_ams@icloud.com
 
 #### Arborescence
->NodeServer
->|____.gitignore
->|____app
->| |____.DS_Store
->| |____app.js
->| |____appKernel.js
->| |____bin
->| | |____database.js
->| | |____drivers
->| | | |____sample.txt
->| | |____kernel.js
->| | |____module.js
->| | |____session.js
->| | |____sessionProvider
->| | | |____redis.js
->| | |____socketServer
->| | | |____socketio.js
->| | |____utils
->| | | |____configAggregator.js
->| | |____websocket.js
->| |____config
->| | |____config.json
->| |____configLoader.js
->| |____constantLoader.js
->|____base
->| |____Controller.js
->| |____Filter.js
->| |____index.js
->| |____Module.js
->| |____Routing.js
->| |____utils
->| | |____fs-utils.js
->|____grunt
->|____NodeNodules.txt
->|____package.json
->|____server
->|____web
->| |____dist
->| |____src
->| | |____assets
->| | | |____images
->| | | |____javascript
->| | | | |____libraries
->| | | | |____modules
->| | | | |____spec
->| | | |____styles
->| | |____views
+NodeServer\s\s
+|____.gitignore\s\s
+|____app\s\s
+| |____.DS_Store\s\s
+| |____app.js\s\s
+| |____appKernel.js\s\s
+| |____bin\s\s
+| | |____database.js\s\s
+| | |____drivers\s\s
+| | | |____sample.txt\s\s
+| | |____kernel.js\s\s
+| | |____module.js\s\s
+| | |____session.js\s\s
+| | |____sessionProvider\s\s
+| | | |____redis.js\s\s
+| | |____socketServer\s\s
+| | | |____socketio.js\s\s
+| | |____utils\s\s
+| | | |____configAggregator.js\s\s
+| | |____websocket.js\s\s
+| |____config\s\s
+| | |____config.json\s\s
+| |____configLoader.js\s\s
+| |____constantLoader.js\s\s
+|____base\s\s
+| |____Controller.js\s\s
+| |____Filter.js\s\s
+| |____index.js\s\s
+| |____Module.js\s\s
+| |____Routing.js\s\s
+| |____utils\s\s
+| | |____fs-utils.js\s\s
+|____grunt\s\s
+|____NodeNodules.txt\s\s
+|____package.json\s\s
+|____server\s\s
+|____web\s\s
+| |____dist\s\s
+| |____src\s\s
+| | |____assets\s\s
+| | | |____images\s\s
+| | | |____javascript\s\s
+| | | | |____libraries\s\s
+| | | | |____modules\s\s
+| | | | |____spec\s\s
+| | | |____styles\s\s
+| | |____views\s\s

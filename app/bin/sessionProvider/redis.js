@@ -1,7 +1,7 @@
 /* Requiering stuff */
 var expressSession = require('express-session'),
     RedisStore = require('connect-redis')(expressSession),
-    sessionStore = new RedisStore({prefix:'session'});
+    sessionStore = new RedisStore(global.config.session.storeOptions);
 
 /* Object constructor and methods declaration */
 var Session = function () { };
@@ -18,12 +18,14 @@ function getSession() {
         key : global.config.session.key,
         secret: global.config.session.secret,
         resave : true,
-        saveUninitialized : true,
+        saveUninitialized : true
+    });
+    /*,
         cookie: {
             expires : new Date(Date.now() + 60480000),
             maxAge : 60480000
         }
-    });
+    */
 }
 
 function getSessionStore() {

@@ -1,6 +1,7 @@
 /*Services requiring*/
 
 	var debug = require('debug')('NodeServer:database');
+	var path = require('path');
 
 /*Class declarations*/
 
@@ -20,10 +21,10 @@ module.exports = DbLoader;
 /*Static methods definitions*/
 
 	function init() {
-		var promises = [Promise.resolve()],
-			currentPath = '';
+		var promises = [Promise.resolve()];
+		
 		for(var i in global.config.databases) {
-			currentPath = global.config.databases[i].path;
+			var currentPath = path.join(__dirname, global.config.databases[i].path);
 			try {
 				databases[i] = require( currentPath );
 				promises.push( databases[i].init() );

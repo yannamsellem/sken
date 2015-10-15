@@ -24,7 +24,7 @@ module.exports = SessionProvider;
 
 	function init() {
 		if(global.config.session && global.config.session.path) {
-			Session = require(path.normalize(global.config.session.path));
+			Session = require(path.normalize(__dirname + global.config.session.path));
 			debug('Session initialized');
 		}
 		else {

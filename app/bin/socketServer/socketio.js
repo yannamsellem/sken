@@ -6,7 +6,7 @@
 /*Bins requiering*/
 
 	var Session = require( global.paths.bin +'/session');
-	// var Module = require( global.paths.server + '/core');
+	var Module = require( global.paths.bin + '/module');
 
 /*Class declaration*/
 	
@@ -31,12 +31,17 @@
 		sockets = Socketio.listen( server, { log: true });
 
 		if (global.config.session && global.config.session.enabled) {
-			var handshake = socketHandshake({store: Session.getSessionStore(), key: global.config.session.key, secret:  global.config.session.secret, parser: cookieParser()});
+			var handshake = socketHandshake({
+				store: Session.getSessionStore(), 
+				key: global.config.session.key, 
+				secret:  global.config.session.secret, 
+				parser: cookieParser()
+			});
 			sockets.use(handshake);
 		}
 
 		sockets.on('connection', function(socket) {
-			// Module.chat.initSockets(sockets, socket, socket.handshake.session);
+			Module.initSockets(sockets, socket, socket.handshake.session);
 		});
 
 		return this;

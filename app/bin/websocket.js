@@ -22,7 +22,7 @@
 
 	function init (app, server) {
 		if (global.config.websocket && global.config.websocket.path) {
-			var wsPath = path.normalize(global.config.websocket.path);
+			var wsPath = path.normalize(__dirname + global.config.websocket.path);
 			try {
 				SocketServer = require(wsPath);
 			} catch (ex) {

@@ -1,0 +1,58 @@
+{
+	"server": {
+		"port": 6001,
+		"address": "127.0.0.1",
+	},
+	"databases": {
+		"mongodb": {
+			"path": "drivers/mongodb-driver",
+			"host": "localhost",
+			"port": 27017,
+			"schema": {
+				"name": "nodeserver",
+				"user": "root",
+				"password": "root",
+				"options": {
+					"safe": true,
+					"numberOfRetries": 10,
+					"retryMilliSeconds": 5000
+				}
+			},
+			"server_options": {
+				"auto_reconnect": true
+			}
+		},
+		"orientdb": {
+			"path": "drivers/orientdb-driver",
+			"host": "localhost",
+			"port": 2424,
+			"user": "root",
+			"password": "root",
+			"schema": {
+				"name": "nodeserver",
+				"user": "root",
+				"password": "root"
+			},
+			"database_options": {
+				"numberOfRetries": 10,
+				"retryMilliSeconds": 5000
+			}
+		}
+	},
+	"websocket": {
+		"name": "socket.io",
+		"enabled": true,
+		"path": "/socketServer/socketio.js",
+	},
+	"session" : {
+		"name" : "Redis",
+		"enabled" : true,
+		"path" : "/sessionProvider/redis.js",
+		"storeOptions" : {
+			"host" : "127.0.0.1",
+			"port" : 6379
+		},
+		"secret": "sid",
+		"key": "superman"
+	}
+}

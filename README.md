@@ -10,19 +10,20 @@ This README would normally document whatever steps are necessary to get your app
 
 ### How do I get set up? ###
 
-* just clone the project
-* configuration are in app/configs/config.json file
-* package.json
-* chose your own database and create a driver
+* Just clone the project
+* Configurations are in app/configs/config.json file
+* Chose your own database and create the driver (with init and get functions)
 * Test not implement yet
-* npm install | npm start
+* Install components using npm install && bower install 
+* Start the server with npm start
+* Enjoy ! 
 
 ### Contribution guidelines ###
 
-* i will write the tests
-* i review my code every day
+* Write the test script for the client side
+* Test the base classes
 
 ### Who do I talk to? ###
 
 * Just me
-* yann_ams@icloud.com
+* GhostxRipper <yann_ams@icloud.com>

@@ -44,16 +44,16 @@
 
 /*Private methods declarations*/
 
-	Kernel.prototype._appWillFinishLaunching = appWillFinishLaunching;
+	Kernel.prototype._appWillFinishLaunching = _appWillFinishLaunching;
 	Kernel.prototype._$appWillFinishLaunching = function() {return Promise.resolve();};
 
-	Kernel.prototype._appDidFinishLaunching = appDidFinishLaunching;
+	Kernel.prototype._appDidFinishLaunching = _appDidFinishLaunching;
 	Kernel.prototype._$appDidFinishLaunching = function() {};
 
-	Kernel.prototype._dbDidFinishLoading = dbDidFinishLoading;
+	Kernel.prototype._dbDidFinishLoading = _dbDidFinishLoading;
 	Kernel.prototype._$dbDidFinishLoading = function () {};
 
-	Kernel.prototype._initializeModules = initializeModules;
+	Kernel.prototype._initializeModules = _initializeModules;
 
 /*Public methods declarations*/
 
@@ -61,22 +61,22 @@
 
 /*Methods definitions*/
 
-	function appWillFinishLaunching () {
+	function _appWillFinishLaunching () {
 		debug('appWillFinishLaunching');
 		return this._$appWillFinishLaunching(this.app, this.server);
 	}
 
-	function appDidFinishLaunching () {
+	function _appDidFinishLaunching () {
 		debug('appDidFinishLaunching');
 		return this._$appDidFinishLaunching(this.app, this.server);
 	}
 
-	function dbDidFinishLoading () {
+	function _dbDidFinishLoading () {
 		debug('dbDidFinishLoading');
 		return this._$dbDidFinishLoading(this.app, this.server, Database);
 	}
 
-	function initializeModules () {
+	function _initializeModules () {
 		Module.init(this.app);
 		if(global.config.websocket && global.config.websocket.enabled) {
 			Websocket.init(this.app, this.server);

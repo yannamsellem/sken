@@ -24,10 +24,10 @@
 			if (stat !== undefined) {
 				return true;
 			}
-			return false;
 		} catch (e) {
-			return false;
-		}
+
+		} 
+		return false;
 	};
 
 	CustomFS.getFilesSync = function(srcPath) {

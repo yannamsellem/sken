@@ -17,7 +17,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git://bitbucket.org:GhostxRipper/nodeserver.git"
+    "url": "git+https://bitbucket.org/GhostxRipper/nodeserver.git"
   },
   "dependencies": {
     "body-parser": "^1.14.1",

@@ -1,7 +1,7 @@
 {
 	"server": {
 		"port": 6001,
-		"address": "127.0.0.1",
+		"address": "127.0.0.1"
 	},
 	"databases": {
 		"mongodb": {
@@ -42,7 +42,7 @@
 	"websocket": {
 		"name": "socket.io",
 		"enabled": true,
-		"path": "/socketServer/socketio.js",
+		"path": "/socketServer/socketio.js"
 	},
 	"session" : {
 		"name" : "Redis",

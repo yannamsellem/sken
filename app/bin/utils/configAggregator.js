@@ -19,7 +19,7 @@ module.exports = ConfigAggregator;
 		target = target || '_';
 
 		var configJson = {},
-			configPath = path.normalize(global.paths.app + '/configs/' + prefix + '.json');
+			configPath = path.normalize(global.paths.app + '/config/' + prefix + '.json');
 
 		try {
 			configJson = require(configPath);

@@ -5,7 +5,7 @@
 		this.post = {};
 		this.put = {};
 		this['delete'] = {};
-		this._name = '_base';
+		this._name = 'base_controller';
 	}
 
 /*Public static methods declarations*/

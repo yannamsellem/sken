@@ -54,7 +54,8 @@ module.exports = Routing;
 				return self.declare(self.router);
 			}).then(function () {
 				self.app.use(self._prefix, self.router);
-			}).catch(function() {
+			}).catch(function(e) {
+				console.log(e);
 				console.log('An error occurs on routing initialisations, routing _prefix:', self._prefix);
 			});
 	}

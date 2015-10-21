@@ -40,6 +40,7 @@ function Grunt (grunt) {
 		WatchTasks = require(__dirname + '/grunt/watchTasks')(grunt);
 
 	config.clean = UtilsTasks.clean;
+	config.concat = UtilsTasks.concat;
 	config.copy = UtilsTasks.copy;
 	config.cssmin = CssTasks.cssmin;
 	config.imagemin = ImageTasks.imagemin;
@@ -47,8 +48,11 @@ function Grunt (grunt) {
 	config.watch = WatchTasks.watch;
 	config.sprite = ImageTasks.strite;
 	config.usemin = HtmlTasks.usemin;
+	config.useminPrepare = HtmlTasks.useminPrepare;
 
 	grunt.initConfig(config);
 
 	// register task 
+	grunt.registerTask('build', ['clean:webDist', 'copy', 'useminPrepare', 'concat', 'cssmin:generated', 'uglify', 'usemin']);
+	grunt.registerTask('live', ['watch']);
 }

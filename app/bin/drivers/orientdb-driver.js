@@ -1,6 +1,6 @@
 var DATABASE = {};
 
-var Oriento = require('oriento');
+var OrientDB = require('orientjs');
 var coniguration = null;
 var db = null;
 
@@ -26,7 +26,7 @@ function _init(numberOfRetries, retryMilliSeconds) {
     if(numberOfRetries > 0) {
         if(!db) {
             // Create the conection to the OrientDB server
-            var server = Oriento({
+            var server = OrientDB({
                 host: configuration.host,
                 port: configuration.port,
                 username: configuration.user,
@@ -42,10 +42,10 @@ function _init(numberOfRetries, retryMilliSeconds) {
 
             db.state = 'disconnected';
 
-            // Connection with socket and retry
+            // Error handler
             db.server.transport.connection.handleSocketError = function(err) {
                 this.cancel('Connection error');
-
+                
                 this.destroySocket();
                 db = null;
                 setTimeout(function() { DATABASE._init(--numberOfRetries, retryMilliSeconds); }, retryMilliSeconds);

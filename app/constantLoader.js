@@ -28,6 +28,7 @@ module.exports = ConstantLoader;
 		global.paths.webRoot = Path.normalize(global.paths.root + '/web');
 		global.paths.views = Path.normalize(global.paths.web + '/views');
 		global.paths.assets = Path.normalize(global.paths.web + '/assets');
+		global.paths.base = Path.normalize(global.paths.root + '/base');
 
 		var modules = CustomFS.getDirectoriesSync(global.paths.server);
 		for(var i in modules)

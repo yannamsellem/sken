@@ -1,0 +1,159 @@
+/*San Francisco Display*/
+@font-face {
+	font-family: "San Francisco Display";
+	src: url(SF-UI-Display-Ultralight.otf);
+	
+	font-weight: 100;
+}
+
+@font-face {
+	font-family: "San Francisco Display";
+	src: url(SF-UI-Display-Thin.otf);
+	
+	font-weight: 200;
+}
+
+@font-face {
+	font-family: "San Francisco Display";
+	src: url(SF-UI-Display-Light.otf);
+	
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: "San Francisco Display";
+	src: url(SF-UI-Display-Regular.otf);
+
+	font-weight:400;
+    font-style:normal;
+    font-variant:normal;
+}
+
+@font-face {
+	font-family: "San Francisco Display";
+	src: url(SF-UI-Display-Medium.otf);
+	
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "San Francisco Display";
+	src: url(SF-UI-Display-Semibold.otf);
+	
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "San Francisco Display";
+	src: url(SF-UI-Display-Bold.otf);
+
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "San Francisco Display";
+	src: url(SF-UI-Display-Heavy.otf);
+	
+	font-weight: 800;
+}
+
+@font-face {
+	font-family: "San Francisco Display";
+	src: url(SF-UI-Display-Black.otf);
+	
+	font-weight: 900;
+}
+
+/*San Francisco Text*/
+@font-face {
+	font-family: "San Francisco Text";
+	src: url(SF-UI-Text-Light.otf);
+	
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: "San Francisco Text";
+	src: url(SF-UI-Text-LightItalic.otf);
+	
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "San Francisco Text";
+	src: url(SF-UI-Text-Regular.otf);
+
+	font-weight:400;
+    font-style:normal;
+    font-variant:normal;
+}
+
+@font-face {
+	font-family: "San Francisco Text";
+	src: url(SF-UI-Text-RegularItalic.otf);
+
+	font-weight:400;
+    font-style:italic;
+    font-variant:normal;
+}
+
+@font-face {
+	font-family: "San Francisco Text";
+	src: url(SF-UI-Text-Medium.otf);
+	
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "San Francisco Text";
+	src: url(SF-UI-Text-MediumItalic.otf);
+	
+	font-weight: 500;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "San Francisco Text";
+	src: url(SF-UI-Text-Semibold.otf);
+	
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "San Francisco Text";
+	src: url(SF-UI-Text-SemiboldItalic.otf);
+	
+	font-weight: 600;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "San Francisco Text";
+	src: url(SF-UI-Text-Bold.otf);
+
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "San Francisco Text";
+	src: url(SF-UI-Text-BoldItalic.otf);
+	
+	font-weight: 700;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "San Francisco Text";
+	src: url(SF-UI-Text-Heavy.otf);
+	
+	font-weight: 800;
+}
+
+@font-face {
+	font-family: "San Francisco Text";
+	src: url(SF-UI-Text-HeavyItalic.otf);
+	
+	font-weight: 800;
+	font-style: italic;
+}

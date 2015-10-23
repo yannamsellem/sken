@@ -1,11 +1,13 @@
-var DATABASE = {};
-
+/*Service requiring*/
 var OrientDB = require('orientjs');
+var debug = require('debug')('NodeServer:OrientDB');
+
+/*Object declaration*/
+var DATABASE = {};
 var coniguration = null;
 var db = null;
 
 /* Static methods declaration */
-
 DATABASE.init = init;
 DATABASE._init = _init;
 DATABASE.get = get;
@@ -45,7 +47,7 @@ function _init(numberOfRetries, retryMilliSeconds) {
             // Error handler
             db.server.transport.connection.handleSocketError = function(err) {
                 this.cancel('Connection error');
-                
+
                 this.destroySocket();
                 db = null;
                 setTimeout(function() { DATABASE._init(--numberOfRetries, retryMilliSeconds); }, retryMilliSeconds);
@@ -55,9 +57,9 @@ function _init(numberOfRetries, retryMilliSeconds) {
             promise = db.record.get('#1:0')
                 .then(function() {
                     db.state = 'connected';
-                    console.log('OrientDB:', 'Connected to database "' + configuration.schema.name + '"');
+                    debug('Connected to database "' + configuration.schema.name + '"');
                     return self;
-                }, function() { console.log('OrientDb database "' + configuration.schema.name + '" doesnot exists.'); });
+                }, function() { debug('"' + configuration.schema.name + '" doesnot exists.'); });
         } else
             promise = Promise.resolve(self);
     } else

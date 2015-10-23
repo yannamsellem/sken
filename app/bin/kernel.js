@@ -24,12 +24,12 @@
 		}
 	});
 
-	Object.defineProperty(Kernel.prototype, 'appDidFinishToLaunching', {
+	Object.defineProperty(Kernel.prototype, 'appDidFinishLaunching', {
 		get: function () {
 			return this._appDidFinishLaunching;
 		},
 		set: function (fn) {
-			this._$appDidFinishToLaunching = fn;
+			this._$appDidFinishLaunching = fn;
 		}
 	});
 
@@ -109,7 +109,7 @@
 				return self.dbDidFinishLoading();
 			})
 			.then(function() {
-				return self.appDidFinishToLaunching();
+				return self.appDidFinishLaunching();
 			})
 			.catch(function(error) {
 				debug('an error occurred during the kernel database initialization: ' + error.toString());

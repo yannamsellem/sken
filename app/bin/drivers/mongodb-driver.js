@@ -38,9 +38,9 @@ module.exports = MongoDB;
 			db.on('error', function(err) {
 				debug('An error occured' + err);
 			});
-			db.on('close', function() {
+			/*db.on('close', function() {
 				db = null;
-			});
+			});*/
 		})
 		.catch(function(err) {
 			debug('"' + configuration.schema.name + '" doesnot exists.');

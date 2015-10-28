@@ -4,7 +4,7 @@ var debug = require('debug')('NodeServer:OrientDB');
 
 /*Object declaration*/
 var DATABASE = {};
-var coniguration = null;
+var configuration = null;
 var db = null;
 
 /* Static methods declaration */

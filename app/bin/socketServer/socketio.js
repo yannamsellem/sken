@@ -41,7 +41,7 @@
 		}
 
 		sockets.on('connection', function(socket) {
-			Module.initSockets(sockets, socket, socket.handshake.session);
+			Module.socketInit(sockets, socket, socket.handshake.session);
 		});
 
 		return this;

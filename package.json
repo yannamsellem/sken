@@ -28,6 +28,7 @@
     "express": "^4.13.3",
     "express-session": "^1.11.3",
     "lodash": "^3.10.1",
+    "mongodb": "^2.0.46",
     "orientjs": "^2.1.0",
     "socket.io": "^1.3.7",
     "socket.io-handshake": "0.0.10"

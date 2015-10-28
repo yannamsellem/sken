@@ -53,6 +53,6 @@ function Grunt (grunt) {
 	grunt.initConfig(config);
 
 	// register task 
-	grunt.registerTask('build', ['clean:webDist', 'copy', 'useminPrepare', 'concat', 'cssmin:generated', 'uglify', 'usemin']);
+	grunt.registerTask('build', ['clean:webDist', 'sprite', 'imagemin', 'copy', 'useminPrepare', 'concat', 'cssmin:generated', 'uglify', 'usemin']);
 	grunt.registerTask('live', ['watch']);
 }

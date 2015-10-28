@@ -1,7 +1,5 @@
 /*Service requiring*/
 	var MongoClient = require('mongodb').MongoClient,
-		Db = require('mongodb').Db,
-		Server = require('mongodb').Server;
 		debug = require('debug')('NodeServer:MongoDB');
 
 /*Object declaration*/
@@ -22,27 +20,31 @@ module.exports = MongoDB;
 /*Static public methods définitions*/
 	function init (config) {
 		configuration = config || global.config.databases.mongodb;
-		this._init(configuration.schema.options.numberOfRetries, configuration.schema.options.retryMilliSeconds);
+		this._init();
 	}
 
-	function _init (numberOfRetries, retryMilliSeconds) {
-		var self = this,
-			promise,
-			database = new Db(configuration.schema.name, new Server(configuration.host, configuration.port), {
-			numberOfRetries: numberOfRetries,
-			retryMilliSeconds: retryMilliSeconds,
-			auto_reconnect:configuration.server_options.auto_reconnect
-		});
-
-		return database.open().then(function(_db) {
-			db = _db;
-
-			return _db.authenticate(configuration.schema.user, configuration.schema.password);
-		}).then(function () {
-			debug('Connected to database "' + configuration.schema.name + '"');
+	function _init () {
+		var url = 'mongodb://'+ configuration.host + ':' + configuration.port + '/' + configuration.schema.name,
+			promise;
+		promise = MongoClient.connect(url, {
+			db: configuration.schema.options,
+			server: {
+				autoReconnect: configuration.server_options
+			}
 		})
-		.catch(function (err) {
+		.then(function(_db) {
+			db = _db;
+			debug('Connected to database "' + configuration.schema.name + '"');
+			db.on('error', function(err) {
+				debug('An error occured' + err);
+			});
+			db.on('close', function() {
+				db = null;
+			});
+		})
+		.catch(function(err) {
 			debug('"' + configuration.schema.name + '" doesnot exists.');
+			console.log(err);
 		});
 	}
 

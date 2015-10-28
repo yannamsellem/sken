@@ -4,7 +4,8 @@
 /*Services requiring*/
 	var bodyParser = require('body-parser'),
 		compress = require('compression'),
-		express = require('express');
+		express = require('express'),
+		jade = require('jade');
 
 /*Kernel methods overriding*/
 

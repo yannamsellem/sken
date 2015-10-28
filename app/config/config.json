@@ -13,7 +13,6 @@
 				"user": "root",
 				"password": "root",
 				"options": {
-					"safe": true,
 					"numberOfRetries": 10,
 					"retryMilliSeconds": 5000
 				}

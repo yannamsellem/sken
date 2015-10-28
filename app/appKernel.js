@@ -15,6 +15,8 @@ module.exports = Kernel;
 /*Kernel methods definitions*/
 
 	function appWillFinishLaunching(app) {
+		app.engine('jade', jade.__express);
+		app.set('view engine', 'jade');
 		app.set('views', global.paths.views);
 		app.use(compress());
 		app.use(bodyParser.urlencoded({ extended: true, inflate: true }));

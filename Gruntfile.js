@@ -26,6 +26,7 @@ function Grunt (grunt) {
  		copy:'grunt-contrib-copy',
  		cssmin:'grunt-contrib-cssmin',
  		imagemin:'grunt-contrib-imagemin',
+ 		jadeUsemin: 'grunt-jade-usemin',
  		sass:'grunt-contrib-sass',
  		uglify:'grunt-contrib-uglify',
  		watch:'grunt-contrib-watch',
@@ -44,6 +45,7 @@ function Grunt (grunt) {
 	config.copy = UtilsTasks.copy;
 	config.cssmin = CssTasks.cssmin;
 	config.imagemin = ImageTasks.imagemin;
+	config.jadeUsemin = HtmlTasks.jadeUsemin;
 	config.sass = CssTasks.sass;
 	config.watch = WatchTasks.watch;
 	config.sprite = ImageTasks.strite;
@@ -53,6 +55,6 @@ function Grunt (grunt) {
 	grunt.initConfig(config);
 
 	// register task 
-	grunt.registerTask('build', ['clean:webDist', 'sprite', 'imagemin', 'copy', 'useminPrepare', 'concat', 'cssmin:generated', 'uglify', 'usemin']);
+	grunt.registerTask('build', ['clean:webDist', 'sprite', 'imagemin', 'copy', 'jadeUsemin']);
 	grunt.registerTask('live', ['watch']);
 }

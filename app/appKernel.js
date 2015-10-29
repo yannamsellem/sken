@@ -16,6 +16,7 @@ module.exports = Kernel;
 /*Kernel methods definitions*/
 
 	function appWillFinishLaunching(app) {
+		app.disable('x-powered-by');
 		app.engine('jade', jade.__express);
 		app.set('view engine', 'jade');
 		app.set('views', global.paths.views);

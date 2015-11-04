@@ -1,8 +1,4 @@
 {
-	"server": {
-		"port": 6001,
-		"address": "127.0.0.1"
-	},
 	"databases": {
 		"mongodb": {
 			"path": "drivers/mongodb-driver",
@@ -51,21 +47,5 @@
 				"retryMilliSeconds": 5000
 			}
 		}
-	},
-	"websocket": {
-		"name": "socket.io",
-		"enabled": true,
-		"path": "/socketServer/socketio.js"
-	},
-	"session" : {
-		"name" : "Redis",
-		"enabled" : true,
-		"path" : "/sessionProvider/redis.js",
-		"storeOptions" : {
-			"host" : "127.0.0.1",
-			"port" : 6379
-		},
-		"secret": "sid",
-		"key": "superman"
 	}
 }

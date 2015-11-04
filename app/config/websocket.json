@@ -1,0 +1,7 @@
+{
+	"websocket": {
+		"name": "socket.io",
+		"enabled": true,
+		"path": "/socketServer/socketio.js"
+	}
+}

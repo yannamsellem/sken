@@ -29,14 +29,14 @@ module.exports = MongoDB;
 		promise = MongoClient.connect(url, {
 			db: configuration.schema.options,
 			server: {
-				autoReconnect: configuration.server_options
+				autoReconnect: configuration.server_options.auto_reconnect
 			}
 		})
 		.then(function(_db) {
 			db = _db;
 			debug('Connected to database "' + configuration.schema.name + '"');
 			db.on('error', function(err) {
-				debug('An error occured' + err);
+				debug('An error occured:' + err);
 			});
 			/*db.on('close', function() {
 				db = null;

@@ -1,0 +1,13 @@
+{
+	"session" : {
+		"name" : "Redis",
+		"enabled" : true,
+		"path" : "/sessionProvider/redis.js",
+		"storeOptions" : {
+			"host" : "127.0.0.1",
+			"port" : 6379
+		},
+		"secret": "sid",
+		"key": "superman"
+	}
+}

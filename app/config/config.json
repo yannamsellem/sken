@@ -4,43 +4,12 @@
 		"address": "127.0.0.1"
 	},
 	"databases": {
-		"mongodb": {
-			"path": "drivers/mongodb-driver",
-			"host": "localhost",
-			"port": 27017,
-			"schema": {
-				"name": "nodeserver",
-				"user": "root",
-				"password": "root",
-				"options": {
-					"numberOfRetries": 10,
-					"retryMilliSeconds": 5000
-				}
-			},
-			"server_options": {
-				"auto_reconnect": true
-			}
-		},
 		"orientdb": {
 			"path": "drivers/orientdb-driver",
 			"host": "localhost",
 			"port": 2424,
 			"user": "root",
 			"password": "root",
-			"schema": {
-				"name": "nodeserver",
-				"user": "root",
-				"password": "root"
-			},
-			"database_options": {
-				"numberOfRetries": 10,
-				"retryMilliSeconds": 5000
-			}
-		},
-		"mysql": {
-			"path": "drivers/mysql-driver",
-			"host": "localhost",
-			"port": 3306,
 			"schema": {
 				"name": "nodeserver",
 				"user": "root",

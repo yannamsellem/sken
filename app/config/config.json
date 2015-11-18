@@ -4,20 +4,21 @@
 		"address": "127.0.0.1"
 	},
 	"databases": {
-		"orientdb": {
-			"path": "drivers/orientdb-driver",
+		"mongodb": {
+			"path": "drivers/mongodb-driver",
 			"host": "localhost",
-			"port": 2424,
-			"user": "root",
-			"password": "root",
+			"port": 27017,
 			"schema": {
 				"name": "nodeserver",
 				"user": "root",
-				"password": "root"
+				"password": "root",
+				"options": {
+					"numberOfRetries": 10,
+					"retryMilliSeconds": 5000
+				}
 			},
-			"database_options": {
-				"numberOfRetries": 10,
-				"retryMilliSeconds": 5000
+			"server_options": {
+				"auto_reconnect": true
 			}
 		}
 	},

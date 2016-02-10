@@ -1,7 +1,10 @@
 /* Requiering stuff */
 var expressSession = require('express-session'),
     RedisStore = require('connect-redis')(expressSession),
-    sessionStore = new RedisStore(global.config.session.storeOptions);
+    redis = require('redis'),
+    client = redis.createClient(),
+    options = global.config.session.storeOptions,
+    sessionStore = new RedisStore({ host: options.host, port: options.port, client: client });
 
 /* Object constructor and methods declaration */
 var Session = function () { };
@@ -17,8 +20,8 @@ function getSession() {
         store : sessionStore,
         key : global.config.session.key,
         secret: global.config.session.secret,
-        resave : true,
-        saveUninitialized : true
+        resave : false,
+        saveUninitialized : false
     });
     /*,
         cookie: {

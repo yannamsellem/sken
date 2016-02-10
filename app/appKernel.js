@@ -5,7 +5,8 @@
 	var bodyParser = require('body-parser'),
 		compress = require('compression'),
 		express = require('express'),
-		jade = require('jade');
+		jade = require('jade'),
+		morgan = require('morgan');
 
 /*Kernel methods overriding*/
 
@@ -24,4 +25,5 @@ module.exports = Kernel;
 		app.use(bodyParser.urlencoded({ extended: true, inflate: true }));
 		app.use(bodyParser.json());
 		app.use(express.static(global.paths.assets));
+		app.use(morgan('dev'));
 	}

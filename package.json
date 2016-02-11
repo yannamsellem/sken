@@ -8,9 +8,7 @@
     "start": "DEBUG=NodeServer:*  node app/app.js",
     "debug": "echo 'npm start' #DEBUG=NodeServer:* NODE_ENV=prod node app/app.js",
     "prestart": "npm install",
-    "postinstall": "bower install",
-
-    "preunistall":"bower uninstall"
+    "postinstall": "bower install"
   },
   "keywords": [
     "node",

@@ -1,15 +1,16 @@
 {
   "name": "node-server",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Node server pattern, tree sample",
   "main": "app/app.js",
   "scripts": {
     "start": "DEBUG=NodeServer:*  node app/app.js",
     "debug": "echo 'npm start' #DEBUG=NodeServer:* NODE_ENV=prod node app/app.js",
-
     "prestart": "npm install",
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+
+    "preunistall":"bower uninstall"
   },
   "keywords": [
     "node",

@@ -1,10 +1,10 @@
 /* Requiering stuff */
 var expressSession = require('express-session'),
     RedisStore = require('connect-redis')(expressSession),
-    redis = require('redis'),
-    client = redis.createClient(),
+    // redis = require('redis'),
+    // client = redis.createClient(),
     options = global.config.session.storeOptions,
-    sessionStore = new RedisStore({ host: options.host, port: options.port, client: client });
+    sessionStore = new RedisStore({ host: options.host, port: options.port });
 
 /* Object constructor and methods declaration */
 var Session = function () { };

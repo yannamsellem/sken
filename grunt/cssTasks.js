@@ -24,7 +24,7 @@ function CssTasks (grunt) {
 				files: [{
 					expand: true,
 					cwd: global.paths.webSrc + '/assets/styles/',
-					src: ['core.scss'],
+					src: ['**/*.scss'],
 					dest: global.paths.webSrc + '/assets/styles/',
 					ext: '.css'
 				}]

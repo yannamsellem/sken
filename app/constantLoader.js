@@ -32,5 +32,5 @@ module.exports = ConstantLoader;
 
 		var modules = CustomFS.getDirectoriesSync(global.paths.server);
 		for(var i in modules)
-			global.paths.modules[i] = Path.normalize(modules[i]);
+			global.paths.modules[i] = Path.join(global.paths.server, modules[i]);
 	}

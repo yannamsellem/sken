@@ -9,6 +9,7 @@
 		this.controllers = {};
 		this._name = '_base';
 		this._routing = true;
+		this.routing = undefined;
 	}
 
 /*Private methods declarations*/
@@ -54,12 +55,21 @@
 
 	function _init (app) {
 		this.app = app;
-		this._loadControllers();
-		this._loadRouting();
-		this._$init(this.app);
-		if (this._routing && this.routing !== undefined) {
-			this.routing.init(this.app);
-		}
+		var self = this;
+		Promise.resolve().then(function() {
+			return self._loadControllers();
+		}).then(function() {
+			return self._loadRouting();
+		}).then(function() {
+			return self._$init(this.app);
+		}).then(function () {
+			if (self._routing && self.routing !== undefined) {
+				self.routing.init(self.app);
+			}
+		}).catch(function(err) {
+			console.log(err);
+			console.log('An error occurs on module initialisations, module name:', self._name);
+		});
 	}
 
 	function _$init (app) {

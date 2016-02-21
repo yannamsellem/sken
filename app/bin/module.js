@@ -23,8 +23,10 @@ module.exports = ModuleLoader;
 	function init(app) {
 		for(var i in global.paths.modules) {
 			try {
-				modules[i] = require(Path.normalize(global.paths.modules[i] + '/core'));
-				modules[i].init(app);
+				var path = Path.normalize(global.paths.modules[i]);
+				var m = require(path);
+				modules[i] = m;
+				m.init(app);
 				debug('module ' + i + ' initialized');
 			}
 			catch(exception) {

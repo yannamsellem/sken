@@ -20,7 +20,7 @@
 
 	CustomFS.checkPathSync = function(path) {
 		try {
-			var stat = fs.lstatSync(path);
+			var stat = fs.statSync(path);
 			if (stat !== undefined) {
 				return true;
 			}

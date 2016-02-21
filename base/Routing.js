@@ -51,9 +51,9 @@ module.exports = Routing;
 			}).then(function() {
 				return self._$init(self.app);
 			}).then(function() {
-				return self.declare(self.router);
+				return self.declare(self._router);
 			}).then(function () {
-				self.app.use(self._prefix, self.router);
+				self.app.use(self._prefix, self._router);
 			}).catch(function(e) {
 				console.log(e);
 				console.log('An error occurs on routing initialisations, routing _prefix:', self._prefix);

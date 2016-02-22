@@ -36,14 +36,14 @@ module.exports = MongoDB;
 			db = _db;
 			debug('Connected to database "' + configuration.schema.name + '"');
 			db.on('error', function(err) {
-				debug('An error occured:' + err);
+				debug('An error occurred:' + err);
 			});
 			/*db.on('close', function() {
 				db = null;
 			});*/
 		})
 		.catch(function(err) {
-			debug('"' + configuration.schema.name + '" doesnot exists.');
+			debug('"' + configuration.schema.name + '" does not exists.');
 			console.log(err);
 		});
 	}

@@ -25,12 +25,12 @@ module.exports = ModuleLoader;
 			try {
 				var path = Path.normalize(global.paths.modules[i]);
 				var m = require(path);
-				modules[i] = m;
+				modules[m._name] = m;
 				m.init(app);
-				debug('module ' + i + ' initialized');
+				debug('module ' + m._name + ' initialized');
 			}
 			catch(exception) {
-				debug('unable to load the module' + i);
+				debug('unable to load the module ' + i);
 			}
 		}
 	}

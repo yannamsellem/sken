@@ -27,7 +27,7 @@ function _init(numberOfRetries, retryMilliSeconds) {
         promise;
     if(numberOfRetries > 0) {
         if(!db) {
-            // Create the conection to the OrientDB server
+            // Create the connection to the OrientDB server
             var server = OrientDB({
                 host: configuration.host,
                 port: configuration.port,

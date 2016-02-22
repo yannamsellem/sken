@@ -1,8 +1,9 @@
-/* Requiering stuff */
+/* Requiring stuff */
 var expressSession = require('express-session'),
     RedisStore = require('connect-redis')(expressSession),
-    // redis = require('redis'),
-    // client = redis.createClient(),
+    debug = require('debug')('NodeServer:Redis'),
+    redis = require('redis'),
+    client = redis.createClient({host: 'localhost', port: 6379}),
     options = global.config.session.storeOptions,
     sessionStore = new RedisStore({ host: options.host, port: options.port });
 
@@ -20,8 +21,8 @@ function getSession() {
         store : sessionStore,
         key : global.config.session.key,
         secret: global.config.session.secret,
-        resave : false,
-        saveUninitialized : false
+        resave : true,
+        saveUninitialized : true
     });
     /*,
         cookie: {
@@ -34,3 +35,9 @@ function getSession() {
 function getSessionStore() {
     return sessionStore;
 }
+
+/* Redis Events */
+
+client.on('error', function (err) {
+    debug('Redis error occurred: ', err.message);
+});

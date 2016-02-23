@@ -1,5 +1,5 @@
 /*Requiring services*/
-	var CustumFS = require('./utils/fs-utils');
+	var CustomFS = require('./utils/fs-utils');
 	var Path = require('path');
 	var fs = require('fs');
 
@@ -56,24 +56,24 @@
 	function _init (app) {
 		this.app = app;
 		var self = this;
-		Promise.resolve().then(function() {
-			return self._loadControllers();
-		}).then(function() {
-			return self._loadRouting();
-		}).then(function() {
-			return self._$init(this.app);
-		}).then(function () {
+		/*Promise.resolve().then(function() {
+			return*/ self._loadControllers();
+		/*}).then(function() {
+			return*/ self._loadRouting();
+		/*}).then(function() {
+			return*/ self._$init(this.app);
+		/*}).then(function () {*/
 			if (self._routing && self.routing !== undefined) {
 				self.routing.init(self.app);
 			}
-		}).catch(function(err) {
+		/*}).catch(function(err) {
 			console.log(err);
 			console.log('An error occurs on module initialisations, module name:', self._name);
-		});
+		});*/
 	}
 
 	function _$init (app) {
-		/*Need To be Overriden*/
+		/*Need To be Overrode*/
 	}
 
 	function _socketInit (sockets, socket, session) {
@@ -84,7 +84,7 @@
 	}
 
 	function _$socketInit (sockets, socket, session) {
-		/*Need To be Overriden*/
+		/*Need To be Overrode*/
 	}
 
 /* properties definitions */

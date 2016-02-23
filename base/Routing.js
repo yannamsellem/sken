@@ -43,21 +43,21 @@ module.exports = Routing;
 		/*this._loadControllers();
 		this._loadFilters();*/
 		var self = this;
-		Promise.resolve()
+		/*Promise.resolve()
 			.then(function () {
-				return self._loadControllers();
-			}).then(function () {
-				return self._loadFilters();
-			}).then(function() {
-				return self._$init(self.app);
-			}).then(function() {
-				return self.declare(self._router);
-			}).then(function () {
+				return*/ self._loadControllers();
+			/*}).then(function () {
+				return*/ self._loadFilters();
+			/*}).then(function() {
+				return*/ self._$init(self.app);
+			/*}).then(function() {
+				return*/ self.declare(self._router);
+			/*}).then(function () {*/
 				self.app.use(self._prefix, self._router);
-			}).catch(function(e) {
+			/*}).catch(function(e) {
 				console.log(e);
 				console.log('An error occurs on routing initialisations, routing _prefix:', self._prefix);
-			});
+			});*/
 	}
 
 	function loadControllers() {

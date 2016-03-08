@@ -14,7 +14,7 @@
 /*Private methods declarations*/
 	Routing.prototype._init = _init;
 	Routing.prototype._$init = function() {return Promise.resolve();};
-	Routing.prototype._loadControllers = loadControllers;
+	// Routing.prototype._loadControllers = loadControllers;
 	Routing.prototype._loadFilters = loadFilters;
 
 /*Public methods declarations*/
@@ -38,29 +38,32 @@
 module.exports = Routing;
 
 /*Private methods definitions*/
-	function _init (app) {
+	function _init (app, controllers) {
 		this.app = app;
-		/*this._loadControllers();
-		this._loadFilters();*/
 		var self = this;
-		/*Promise.resolve()
-			.then(function () {
-				return*/ self._loadControllers();
-			/*}).then(function () {
-				return*/ self._loadFilters();
-			/*}).then(function() {
-				return*/ self._$init(self.app);
-			/*}).then(function() {
-				return*/ self.declare(self._router);
-			/*}).then(function () {*/
-				self.app.use(self._prefix, self._router);
-			/*}).catch(function(e) {
-				console.log(e);
-				console.log('An error occurs on routing initialisations, routing _prefix:', self._prefix);
-			});*/
+		this.controllers = controllers || {};
+		/*Promise.resolve().then(function () {
+		 		return self._loadControllers();
+		 }).then(function () {
+		 	return self._loadFilters();
+		 }).then(function() {
+		 	return self._$init(self.app);
+		 }).then(function() {
+		 	return self.declare(self._router);
+		 }).then(function () {
+		 	self.app.use(self._prefix, self._router);
+		 }).catch(function(e) {
+		 	console.log(e);
+		 	console.log('An error occurs on routing initialisations, routing _prefix:', self._prefix);
+		 });*/
+		// self._loadControllers();
+		self._loadFilters();
+		self._$init(self.app);
+		self.declare(self._router);
+		self.app.use(self._prefix, self._router);
 	}
 
-	function loadControllers() {
+	/*function loadControllers() {
 		var controllerPath = Path.normalize(this.currentDir + '/controllers');
 		if (customFS.checkPathSync(controllerPath)) {
 			var controllersFiles = CustomFS.getFilesSync(controllerPath);
@@ -74,7 +77,7 @@ module.exports = Routing;
 				}
 			}
 		}
-	}
+	}*/
 
 	function loadFilters() {
 		var filterPath = Path.normalize(this.currentDir + '/filters');

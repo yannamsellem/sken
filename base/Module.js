@@ -1,7 +1,8 @@
 /*Requiring services*/
-	var CustomFS = require('./utils/fs-utils');
-	var Path = require('path');
-	var fs = require('fs');
+var CustomFS = require('./utils/fs-utils');
+var Path = require('path');
+var fs = require('fs');
+var _ = require('lodash');
 
 /* Class declaration */
 	function Module (currentDir) {
@@ -28,7 +29,7 @@
 /*Private methods definitions*/
 	function loadControllers() {
 		var controllerPath = Path.normalize(this.currentDir + '/controllers');
-		if (CustumFS.checkPathSync(controllerPath)) {
+		if (CustomFS.checkPathSync(controllerPath)) {
 			var controllersFiles = CustomFS.getFilesSync(controllerPath);
 			for (var i = 0; i < controllersFiles.length; i++) {
 				var ctrlPath = Path.join(controllerPath,controllersFiles[i]);
@@ -57,23 +58,35 @@
 		this.app = app;
 		var self = this;
 		/*Promise.resolve().then(function() {
-			return*/ self._loadControllers();
-		/*}).then(function() {
-			return*/ self._loadRouting();
-		/*}).then(function() {
-			return*/ self._$init(this.app);
-		/*}).then(function () {*/
+			return self._loadControllers();
+		}).then(function() {
+			return self._loadRouting();
+		}).then(function() {
+			return self._$init(self.app);
+		}).then(function () {
 			if (self._routing && self.routing !== undefined) {
 				self.routing.init(self.app);
 			}
-		/*}).catch(function(err) {
+		}).catch(function(err) {
 			console.log(err);
 			console.log('An error occurs on module initialisations, module name:', self._name);
 		});*/
+
+		self._loadControllers();
+		self._loadRouting();
+		self._$init(self.app);
+		if (!_.isEmpty(self.controllers)) {
+			_(self.controllers).map(function (value) {
+				value.init(self.app);
+			});
+		}
+		if (self._routing && self.routing !== undefined) {
+			self.routing.init(self.app, self.controllers);
+		}
 	}
 
 	function _$init (app) {
-		/*Need To be Overrode*/
+		/*Need To be overridden*/
 	}
 
 	function _socketInit (sockets, socket, session) {
@@ -84,10 +97,10 @@
 	}
 
 	function _$socketInit (sockets, socket, session) {
-		/*Need To be Overrode*/
+		/*Need To be overridden*/
 	}
 
-/* properties definitions */
+	/* properties definitions */
 	Object.defineProperty(Module.prototype, 'init', {
 		get: function () {
 			return this._init;
@@ -106,10 +119,10 @@
 		}
 	});
 
-/*Public static methods definitions*/
+	/*Public static methods definitions*/
 	function clone (dir) {
 		return new Module(dir);
 	}
 
-/*Exports*/
-module.exports = Module;
+	/*Exports*/
+	module.exports = Module;

@@ -18,7 +18,7 @@ Module/
     controllers/
     filters/
     managers/
-    models/
+    factories/
     providers/
     core.js
     routing.js

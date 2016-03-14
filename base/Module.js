@@ -45,7 +45,7 @@ var _ = require('lodash');
 
 	function loadRouting() {
 		var routingPath = Path.join(this.currentDir,'routing.js');
-		if (this._routing && CustumFS.checkPathSync(routingPath)) {
+		if (this._routing && CustomFS.checkPathSync(routingPath)) {
 			try {
 				this.routing = require(routingPath);
 			} catch (e) {

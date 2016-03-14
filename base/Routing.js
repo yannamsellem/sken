@@ -82,7 +82,7 @@ module.exports = Routing;
 	function loadFilters() {
 		var filterPath = Path.normalize(this.currentDir + '/filters');
 		if (customFS.checkPathSync(filterPath)) {
-			var filtersFiles = CustomFS.getFilesSync(filterPath);
+			var filtersFiles = customFS.getFilesSync(filterPath);
 			for (var i = 0; i < filtersFiles.length; i++) {
 				var fltrPath = Path.join(filterPath,filtersFiles[i]);
 				try {

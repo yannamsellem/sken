@@ -20,7 +20,7 @@ module.exports = MongoDB;
 /*Static public methods définitions*/
 	function init (config) {
 		configuration = config || global.config.databases.mongodb;
-		this._init();
+		return this._init();
 	}
 
 	function _init () {
@@ -44,8 +44,9 @@ module.exports = MongoDB;
 		})
 		.catch(function(err) {
 			debug('"' + configuration.schema.name + '" does not exists.');
-			console.log(err);
+			debug(err.message);
 		});
+		return promise;
 	}
 
 	function get () {

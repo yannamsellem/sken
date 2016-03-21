@@ -6,11 +6,13 @@
 		compress = require('compression'),
 		express = require('express'),
 		jade = require('jade'),
-		morgan = require('morgan');
+		morgan = require('morgan'),
+		errorHandler = require(global.paths.vendors).errorHandler;
 
 /*Kernel methods overriding*/
 
 	Kernel.appWillFinishLaunching = appWillFinishLaunching;
+	Kernel.appDidFinishLaunching = appDidFinishLaunching;
 
 module.exports = Kernel;
 
@@ -26,4 +28,8 @@ module.exports = Kernel;
 		app.use(bodyParser.json());
 		app.use(express.static(global.paths.assets));
 		app.use(morgan('dev'));
+	}
+
+	function appDidFinishLaunching (app) {
+		errorHandler.set(app);
 	}

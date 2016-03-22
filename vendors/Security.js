@@ -10,6 +10,7 @@
     Security.generateHash = generateHash;
     Security.verify = verify;
     Security.aesEncryption = aesEncryption;
+    Security.aesDecryption = aesDecryption;
 
 /*Private methods declarations*/
     Security._hash = _hash;
@@ -65,8 +66,20 @@ module.exports = Security;
     }
 
     function aesEncryption(data, key) {
-        var cipher = crypto.createCipher('aes-256-ctr', key);
-        var crypted = cipher.update(data.toString(), 'utf8', 'hex');
-        crypted += cipher.final('hex');
-        return new Buffer(crypted).toString('base64');
+        var cipher = crypto.createCipher('aes-256-ctr', key),
+            encrypted = cipher.update(data.toString(), 'utf8', 'hex');
+
+        encrypted += cipher.final('hex');
+
+        return new Buffer(encrypted).toString('base64');
+    }
+
+    function aesDecryption(encryptedData, key) {
+        var encrypted = new Buffer(encryptedData, 'base64').toString('hex'),
+            decipher = crypto.createDecipher('aes-256-ctr', key),
+            decrypted = decipher.update(encrypted, 'hex', 'utf8');
+
+        decrypted += decipher.final('utf8');
+
+        return decrypted;
     }

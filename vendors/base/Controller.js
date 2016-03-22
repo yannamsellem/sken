@@ -5,6 +5,7 @@
 		this.post = {};
 		this.put = {};
 		this['delete'] = {};
+		this.patch = {};
 		this._name = 'base_controller';
 	}
 /*Public methods declarations*/
@@ -48,7 +49,7 @@ module.exports = Controller;
 	function isDefined(parameters) {
 		return new Promise(function(resolve, reject) {
 			for (var key in parameters) {
-				if (parameters[key] === undefined || parameters[key] === null) {
+				if (parameters[key] === undefined || parameters[key] === null || isNaN(parameters[key])) {
 					reject(Error('Missing '+ key + ' parameters'));
 				}
 			}

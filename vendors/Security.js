@@ -35,7 +35,7 @@ module.exports = Security;
     function _generateSalt(round) {
         round = round || 10;
         var randomByte = crypto.randomBytes(16);
-        return randomByte.toSource('base64', 0, round);
+        return randomByte.toString('base64', 0, round);
     }
 
 /*Public Methods definitions*/

@@ -10,7 +10,7 @@
 
 	module.exports = CustomFS;
 
-/* Static method declartion */
+/* Static method declaration */
 
 	CustomFS.getDirectoriesSync = function(srcPath) {
 		return fs.readdirSync(srcPath).filter(function(file) {

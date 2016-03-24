@@ -1,29 +1,29 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
-
 ### What is this repository for? ###
 
 * Node server module
-* 0.1.1
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* 1.0.0
 
 ### How do I get set up? ###
 
-* Just clone the project
+* Clone the project
 * Configurations are in app/configs/config.json file
-* Chose your own database and create the driver (with init and get functions)
+* Chose your own database and use or create the driver
+(with `init` and `get` functions, `init` function must return a Promise)
 * Test not implement yet
-* Install components using npm install && bower install 
-* Start the server with npm start
+* Start the server with `npm start`, the installation will start automatically
 * Enjoy ! 
+
+For more understanding read the ```Server_module_ReadMe.txt``` in the server folder.
 
 ### Contribution guidelines ###
 
-* Write the test script for the client side
-* Test the base classes
+* Implement karma for unit testing
+* Implement a system log ( with [Bunyan](https://github.com/trentm/node-bunyan) )
 
 ### Who do I talk to? ###
 
 * Just me
-* GhostxRipper <yann_ams@icloud.com>
+* [GhostxRipper](mailto:yann_ams@icloud.com) alias Yann AMSELLEM
+

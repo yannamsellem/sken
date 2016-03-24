@@ -37,6 +37,7 @@
     "mysql": "^2.10.2",
     "orientjs": "^2.1.11",
     "redis": "^2.5.3",
+    "sequelize": "^3.20.0",
     "socket.io": "^1.4.5",
     "socket.io-handshake": "0.0.10"
   },

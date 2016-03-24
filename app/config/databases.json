@@ -46,6 +46,20 @@
 				"numberOfRetries": 10,
 				"retryMilliSeconds": 5000
 			}
+		},
+		"sequelize": {
+			"path": "drivers/sequelize",
+			"name": "nodeserver",
+			"user": "root",
+			"password": "root",
+			"options": {
+				"dialect": "mysql",
+				"host": "localhost",
+				"port": 8889,
+				"sync": {
+					"force": true
+				}
+			}
 		}
 	}
 }

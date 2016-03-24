@@ -9,7 +9,7 @@
 
 * Clone the project
 * Configurations are in app/configs/config.json file
-* Chose your own database and use or create the driver
+* Chose your own database and use or create the driver  
 (with `init` and `get` functions, `init` function must return a Promise)
 * Test not implement yet
 * Start the server with `npm start`, the installation will start automatically
@@ -26,4 +26,3 @@ For more understanding read the ```Server_module_ReadMe.txt``` in the server fol
 
 * Just me
 * [GhostxRipper](mailto:yann_ams@icloud.com) alias Yann AMSELLEM
-

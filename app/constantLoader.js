@@ -1,6 +1,6 @@
 /*Service requiring*/
 
-	var CustomFS = require('../base/utils/fs-utils'),
+	var CustomFS = require('../vendors/base/utils/fs-utils'),
 		Path = require('path');
 
 /*Class declaration*/

@@ -1,6 +1,8 @@
 /*Service requiring*/
 	var MongoClient = require('mongodb').MongoClient,
-		debug = require('debug')('NodeServer:MongoDB');
+		debug = require('debug')('NodeServer:MongoDB'),
+		fs = require('fs'),
+		path = require('path');
 
 /*Object declaration*/
 	var configuration = null,
@@ -41,12 +43,50 @@ module.exports = MongoDB;
 			/*db.on('close', function() {
 				db = null;
 			});*/
+
+			var factories = getFactoriesDirectories(),
+				promises = [Promise.resolve()];
+
+			factories.forEach(function (file) {
+				try {
+					var factory = require(file);
+					if (factory.constructor.name === 'MongoFactory') {
+						promises.push(factory.init(_db));
+					}
+				} catch (e) {
+					console.log(e);
+				}
+			});
+
+			return Promise.all(promises);
 		})
 		.catch(function(err) {
 			debug('"' + configuration.schema.name + '" does not exists.');
 			debug(err.message);
+			// return Promise.reject(err);
 		});
 		return promise;
+	}
+
+	function getFactoriesDirectories() {
+		var factories = [];
+
+		var factoriesFolders = fs.readdirSync(global.paths.server).filter(function(file) {
+			var pathFile = path.join(global.paths.server, file);
+			return (fs.statSync(pathFile).isDirectory()) && (fs.existsSync(path.join(pathFile, 'factories')));
+		}).map(function (folder) {
+			return path.join(global.paths.server, folder+'/factories');
+		});
+		factoriesFolders.forEach(function (folder) {
+			factories = factories.concat(fs.readdirSync(folder).filter(function (file) {
+				var filePath = path.join(folder, file);
+				return fs.statSync(filePath).isFile() && (file.indexOf('.') !== 0 ) && (file !== 'index.js');
+			}).map(function (f) {
+				return path.join(folder, f);
+			}));
+		});
+
+		return factories;
 	}
 
 	function get () {

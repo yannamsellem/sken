@@ -1,0 +1,1 @@
+exports.MongoFactory = require('./mongoFactory');

@@ -2,7 +2,8 @@
 	var MongoClient = require('mongodb').MongoClient,
 		debug = require('debug')('NodeServer:MongoDB'),
 		fs = require('fs'),
-		path = require('path');
+		path = require('path'),
+		MongoFactory = require(global.paths.vendors).factories.MongoFactory;
 
 /*Object declaration*/
 	var configuration = null,
@@ -50,7 +51,7 @@ module.exports = MongoDB;
 			factories.forEach(function (file) {
 				try {
 					var factory = require(file);
-					if (factory.constructor.name === 'MongoFactory') {
+					if (factory instanceof MongoFactory) {
 						promises.push(factory.init(_db));
 					}
 				} catch (e) {
@@ -58,7 +59,7 @@ module.exports = MongoDB;
 				}
 			});
 
-			return Promise.all(promises);
+			return Promise.all(promises).catch(function (err) { debug('MongoFactory error - [%s]', err.message); });
 		})
 		.catch(function(err) {
 			debug('"' + configuration.schema.name + '" does not exists.');

@@ -49,7 +49,7 @@ module.exports = Controller;
 	function isDefined(parameters) {
 		return new Promise(function(resolve, reject) {
 			for (var key in parameters) {
-				if (parameters[key] === undefined || parameters[key] === null || isNaN(parameters[key])) {
+				if (parameters[key] === undefined || parameters[key] === null || ( typeof parameters[key] === 'number' && isNaN(parameters[key]))) {
 					reject(Error('Missing '+ key + ' parameters'));
 				}
 			}

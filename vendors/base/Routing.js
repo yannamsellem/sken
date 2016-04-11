@@ -42,42 +42,11 @@ module.exports = Routing;
 		this.app = app;
 		var self = this;
 		this.controllers = controllers || {};
-		/*Promise.resolve().then(function () {
-		 		return self._loadControllers();
-		 }).then(function () {
-		 	return self._loadFilters();
-		 }).then(function() {
-		 	return self._$init(self.app);
-		 }).then(function() {
-		 	return self.declare(self._router);
-		 }).then(function () {
-		 	self.app.use(self._prefix, self._router);
-		 }).catch(function(e) {
-		 	console.log(e);
-		 	console.log('An error occurs on routing initialisations, routing _prefix:', self._prefix);
-		 });*/
-		// self._loadControllers();
 		self._loadFilters();
 		self._$init(self.app);
 		self.declare(self._router);
 		self.app.use(self._prefix, self._router);
 	}
-
-	/*function loadControllers() {
-		var controllerPath = Path.normalize(this.currentDir + '/controllers');
-		if (customFS.checkPathSync(controllerPath)) {
-			var controllersFiles = CustomFS.getFilesSync(controllerPath);
-			for (var i = 0; i < controllersFiles.length; i++) {
-				var ctrlPath = Path.join(controllerPath,controllersFiles[i]);
-				try {
-					var controller = require(ctrlPath);
-					this.controllers[controller._name.toLowerCase()] = controller;
-				} catch (e) {
-					console.warn('Error loading controller',e, 'at path', ctrlPath);
-				}
-			}
-		}
-	}*/
 
 	function loadFilters() {
 		var filterPath = Path.normalize(this.currentDir + '/filters');

@@ -23,7 +23,7 @@ A simple way to make a http(or https) node js app
 ### Contribution guidelines ###
 
 * implement Karma for angular unit testing
-* implement Jasmine fot node.js unit testing
+* implement Jasmine for node.js unit testing
 * implement Bunyan for logging stuff
 
 ### Who do I talk to? ###

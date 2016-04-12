@@ -12,8 +12,9 @@ A simple way to make a http(or https) node js app
 
 * Just clone the project
 * Configurations are in app/configs/config.json file
-* Chose your own database and use (MySQL, OrientBD, MSSQL, PostgreSQL, MariaDB, SQLite and MongoDB)  
- or create the driver (with init and get functions)
+* Chose your own database  
+ use a driver (MySQL, OrientBD, MSSQL, PostgreSQL, MariaDB, SQLite and MongoDB)  
+ or create one (with init and get functions)
 * Test not implement yet
 * Implement your modules
 * Start the server with npm start

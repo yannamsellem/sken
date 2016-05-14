@@ -60,7 +60,7 @@ module.exports = Security;
             if (encrypted === test) {
                 resolve();
             } else {
-                reject();
+                reject(Error('Encrypted not match'));
             }
         });
     }

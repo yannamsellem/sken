@@ -18,11 +18,11 @@ module.exports = Vendor;
     function allowMiddleware(request, response, next) {
 
         response.setHeader('Access-Control-Allow-Origin', '*');
-        response.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-        response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Content-Length, Accept');
+        response.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
+        response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Content-Length, Accept, x-access-token');
 
         if(request.method === 'OPTIONS')
-            response.send(200);
+            response.sendStatus(200);
         else
             next();
     }

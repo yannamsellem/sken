@@ -57,6 +57,21 @@ var _ = require('lodash');
 	function _init (app) {
 		this.app = app;
 		var self = this;
+		/*Promise.resolve().then(function() {
+			return self._loadControllers();
+		}).then(function() {
+			return self._loadRouting();
+		}).then(function() {
+			return self._$init(self.app);
+		}).then(function () {
+			if (self._routing && self.routing !== undefined) {
+				self.routing.init(self.app);
+			}
+		}).catch(function(err) {
+			console.log(err);
+			console.log('An error occurs on module initialisations, module name:', self._name);
+		});*/
+
 		self._loadControllers();
 		self._loadRouting();
 		self._$init(self.app);

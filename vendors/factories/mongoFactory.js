@@ -14,15 +14,29 @@
 
         /*model*/
         this.model = {};
+
+        /*EventEmitter*/
+        EventEmitter.call(this);
+        this._listen = false;
     }
 
 /*Services requiring*/
-    var MongoDB  = require('mongodb'),
-        ObjectID = MongoDB.ObjectID,
-        _        = require('lodash');
+    var MongoDB      = require('mongodb'),
+        ObjectID     = MongoDB.ObjectID,
+        _            = require('lodash'),
+        EventEmitter = require('events').EventEmitter,
+        util         = require('util');
+
+/*Inheritance*/
+    util.inherits(MongoFactory, EventEmitter);
+
+/*Constants Variables*/
+    var ON_INSERT_EVENT_NAME = 'ON_INSERT_EVENT_NAME',
+        ON_INIT_EVENT_NAME   = 'ON_INIT_EVENT_NAME',
+        ON_CREATE_EVENT_NAME = 'ON_CREATE_EVENT_NAME';
 
 /*Services injections*/
-    MongoFactory.ObjectID = ObjectID;
+    MongoFactory.prototype.ObjectID = ObjectID;
 
 /*Private methods declarations*/
     MongoFactory.prototype.init = _init;
@@ -30,6 +44,7 @@
 /*Public methods declarations*/
     MongoFactory.prototype.prepare = prepare;
     MongoFactory.prototype.extendModel = extendModel;
+    MongoFactory.prototype.insert = insert;
 
 /*Public static methods declarations*/
     MongoFactory.clone = clone;
@@ -49,12 +64,19 @@ module.exports = MongoFactory;
         var promise = Promise.resolve(),
             self = this;
 
+        if (this._listen) {
+            this.emit(ON_INIT_EVENT_NAME, this._name);
+        }
+
         if (!!options.force) {
             promise = self._db.dropCollection(self._collectionName);
         }
 
         return promise.then(function () {
             return self._db.createCollection(self._collectionName);
+        }).then(function (collection) {
+            if (self._listen) self.emit(ON_CREATE_EVENT_NAME, collection);
+            return collection;
         });
     }
 
@@ -74,6 +96,16 @@ module.exports = MongoFactory;
         return _.extend(_.clone(this.model), model);
     }
 
+    function insert(model) {
+        var self = this;
+        return this.prepare().then(function (collection) {
+            return collection.insertOne(model);
+        }).then(function(result) {
+            if (self._listen) self.emit(ON_INSERT_EVENT_NAME, result.insertedId);
+            return result;
+        });
+    }
+
 /*Public static methods definitions*/
 
    function clone() {
@@ -83,5 +115,5 @@ module.exports = MongoFactory;
 /*Public Methods overridden definitions*/
 
     function toString() {
-        return this._name;
+        return '[MongoFactory ' + this._name + ']';
     }

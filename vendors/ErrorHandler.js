@@ -46,8 +46,8 @@ module.exports = ErrorHandler;
     }
 
     function errorHandler(error, request, response, next) {
-        if (!error.message && error.message.match(/(unauthorized|forbidden|notmatch|not match)/i)) error.status = 403;
-        if (!error.message && error.message.match(/(not found|notfound)/i)) error.status = 404;
+        if (error.message && error.message.match(/(unauthorized|forbidden|notmatch|not match)/i)) error.status = 403;
+        if (error.message && error.message.match(/(not found|notfound)/i)) error.status = 404;
         response.status(error.status || 500).json({ message: error.message });
     }
 

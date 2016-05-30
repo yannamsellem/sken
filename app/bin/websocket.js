@@ -34,5 +34,5 @@
 	}
 
 	function get () {
-		SocketServer.get();
+		return SocketServer.get();
 	}

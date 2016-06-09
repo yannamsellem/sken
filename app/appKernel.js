@@ -5,7 +5,7 @@
 	var bodyParser = require('body-parser'),
 		compress = require('compression'),
 		express = require('express'),
-		jade = require('jade'),
+		pug = require('pug'),
 		morgan = require('morgan'),
 		errorHandler = require(global.paths.vendors).errorHandler;
 
@@ -20,8 +20,8 @@ module.exports = Kernel;
 
 	function appWillFinishLaunching(app) {
 		app.disable('x-powered-by');
-		app.engine('jade', jade.__express);
-		app.set('view engine', 'jade');
+		app.engine('pug', pug.__express);
+		app.set('view engine', 'pug');
 		app.set('views', global.paths.views);
 		app.use(compress());
 		app.use(bodyParser.urlencoded({ extended: true, inflate: true }));

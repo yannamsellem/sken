@@ -2,7 +2,8 @@
 
 ES6 branch: Turn the application into ECMAScript2015
 
-- In progress...  
+- In progress...
+
   - [x] Bin directory
   - [x] entry point app.js, appKernel.js, config and contants loader
   - [x] gruntfile must be into ES5

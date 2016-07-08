@@ -4,3 +4,4 @@ node_modules/*
 web/src/assets/**/libraries/*
 !.bowerrc
 !.jshintrc
+npm-debug.log

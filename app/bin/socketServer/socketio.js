@@ -1,52 +1,45 @@
 /*Services requiring*/
-	var Socketio = require('socket.io'),
-		cookieParser = require('cookie-parser'),
-		socketHandshake = require('socket.io-handshake');
-	
+	const Socketio 		 		= require('socket.io'),
+			  cookieParser 		= require('cookie-parser'),
+				socketHandshake = require('socket.io-handshake');
+
 /*Bins requiering*/
 
-	var Session = require( global.paths.bin +'/session');
-	var Module = require( global.paths.bin + '/module');
-
-/*Class declaration*/
-	
-	var SocketIoServer = function() {};
+	const Session = require( global.paths.bin +'/session');
+	const Module 	= require( global.paths.bin + '/module');
 
 /*Variables declaration*/
+		var sockets = null;
 
-	var sockets = null;
+/*Class declaration*/
 
-/*Methods declarations*/
+	class SocketIoServer {
+		constructor() {}
 
-	SocketIoServer.init = init;
-	SocketIoServer.get = get;
+		static init (app, server) {
+			sockets = Socketio.listen( server, { log: true });
 
-/*Exports*/
+			if (global.config.session && global.config.session.enabled) {
+				var handshake = socketHandshake({
+					store: Session.getSessionStore(),
+					key: global.config.session.key,
+					secret:  global.config.session.secret,
+					parser: cookieParser()
+				});
+				sockets.use(handshake);
+			}
 
-	module.exports = SocketIoServer;
-
-/*Implementations*/
-
-	function init (app, server) {
-		sockets = Socketio.listen( server, { log: true });
-
-		if (global.config.session && global.config.session.enabled) {
-			var handshake = socketHandshake({
-				store: Session.getSessionStore(), 
-				key: global.config.session.key, 
-				secret:  global.config.session.secret, 
-				parser: cookieParser()
+			sockets.on('connection', (socket) => {
+				Module.socketInit(sockets, socket, socket.handshake.session);
 			});
-			sockets.use(handshake);
+
+			return this;
 		}
 
-		sockets.on('connection', function(socket) {
-			Module.socketInit(sockets, socket, socket.handshake.session);
-		});
-
-		return this;
+		static get() {
+			return sockets;
+		}
 	}
 
-	function get () {
-		return sockets;
-	}
+/*Exports*/
+module.exports = SocketIoServer;

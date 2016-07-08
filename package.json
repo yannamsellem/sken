@@ -6,7 +6,8 @@
   "main": "app/app.js",
   "scripts": {
     "start": "DEBUG=NodeServer:*  node app/app.js",
-    "debug": "echo 'npm start' #DEBUG=NodeServer:* NODE_ENV=prod node app/app.js",
+    "debug": "DEBUG=NodeServer:* node --debug app/app.js",
+    "devserver": "supervisor --watch server app/app.js",
     "prestart": "npm install",
     "postinstall": "bower install"
   },

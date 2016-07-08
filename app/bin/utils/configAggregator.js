@@ -4,28 +4,23 @@
 
 /* Class declaration */
 
-	var ConfigAggregator = function() {};
+	class ConfigAggregator {
+		static aggregate (prefix, target) {
+			prefix = prefix || 'config';
+			target = target || '_';
 
-/* Static methods declaration */
+			var configJson = {},
+				configPath = path.normalize(global.paths.app + '/config/' + prefix + '.json');
 
-	ConfigAggregator.aggregate = aggregate;
+			try {
+				configJson = require(configPath);
+			} catch (exception) {
+				throw Error('server configuration not found');
+			}
+
+			global[target] = configJson;
+		}
+	}
+
 
 module.exports = ConfigAggregator;
-
-/* Static methods definitions */
-
-	function aggregate (prefix, target) {
-		prefix = prefix || 'config';
-		target = target || '_';
-
-		var configJson = {},
-			configPath = path.normalize(global.paths.app + '/config/' + prefix + '.json');
-
-		try {
-			configJson = require(configPath);
-		} catch (exception) {
-			throw Error('server configuration not found');
-		}
-
-		global[target] = configJson;
-	}

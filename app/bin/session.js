@@ -35,7 +35,7 @@ module.exports = SessionProvider;
 
 	function setSession(app) {
 		if(Session) {
-			app.use(Session.getSession());
+			app.use(Session.session);
 			debug('Session set');
 		}
 		else {
@@ -45,7 +45,7 @@ module.exports = SessionProvider;
 
 	function getSession() {
 		if(Session)
-			return Session.getSession();
+			return Session.session;
 		else {
 			throw Error('getSession used before session initialization');
 		}
@@ -53,7 +53,7 @@ module.exports = SessionProvider;
 
 	function getSessionStore() {
 		if(Session)
-			return Session.getSessionStore();
+			return Session.sessionStore;
 		else {
 			throw Error('getSessionStore used before session initialization');
 		}

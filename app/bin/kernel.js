@@ -1,16 +1,18 @@
 /*Bin requiring*/
 
-	var Module = require(__dirname + '/module'),
-		Database = require(__dirname + '/database'),
-		Session = require(__dirname + '/session'),
-		Websocket = require(__dirname + '/websocket'),
-		debug = require('debug')('NodeServer:kernel');
+	const Module    = require(__dirname + '/module'),
+				Database  = require(__dirname + '/database'),
+				Session   = require(__dirname + '/session'),
+				Websocket = require(__dirname + '/websocket'),
+				debug 		= require('debug')('NodeServer:kernel');
 
 /*Class declaration*/
 
-	function Kernel () {
-		this.app = null;
-		this.server = null;
+	class Kernel {
+		constructor() {
+			this.app = null;
+			this.server = null;
+		}
 	}
 
 /*Properties declarations*/

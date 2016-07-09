@@ -13,109 +13,81 @@
 			this.app = null;
 			this.server = null;
 		}
-	}
 
-/*Properties declarations*/
-
-	Object.defineProperty(Kernel.prototype, 'appWillFinishLaunching', {
-		get: function () {
+		/*Properties declarations*/
+		get appWillFinishLaunching() {
 			return this._appWillFinishLaunching;
-		},
-		set: function (fn) {
+		}
+		set appWillFinishLaunching(fn) {
 			this._$appWillFinishLaunching = fn;
 		}
-	});
 
-	Object.defineProperty(Kernel.prototype, 'appDidFinishLaunching', {
-		get: function () {
+		get appDidFinishLaunching() {
 			return this._appDidFinishLaunching;
-		},
-		set: function (fn) {
+		}
+		set appDidFinishLaunching(fn) {
 			this._$appDidFinishLaunching = fn;
 		}
-	});
 
-	Object.defineProperty(Kernel.prototype, 'dbDidFinishLoading', {
-		get: function () {
+		get dbDidFinishLoading() {
 			return this._dbDidFinishLoading;
-		},
-		set: function (fn) {
+		}
+		set dbDidFinishLoading(fn) {
 			this._$dbDidFinishLoading = fn;
 		}
-	});
 
-/*Private methods declarations*/
+		/*Private methods definitions*/
+		_$appWillFinishLaunching() { return Promise.resolve(); }
+		_$appDidFinishLaunching() {}
+		_$dbDidFinishLoading() {}
 
-	Kernel.prototype._appWillFinishLaunching = _appWillFinishLaunching;
-	Kernel.prototype._$appWillFinishLaunching = function() {return Promise.resolve();};
-
-	Kernel.prototype._appDidFinishLaunching = _appDidFinishLaunching;
-	Kernel.prototype._$appDidFinishLaunching = function() {};
-
-	Kernel.prototype._dbDidFinishLoading = _dbDidFinishLoading;
-	Kernel.prototype._$dbDidFinishLoading = function () {};
-
-	Kernel.prototype._initializeModules = _initializeModules;
-
-/*Public methods declarations*/
-
-	Kernel.prototype.init = init;
-
-/*Methods definitions*/
-
-	function _appWillFinishLaunching () {
-		debug('appWillFinishLaunching');
-		return this._$appWillFinishLaunching(this.app, this.server);
-	}
-
-	function _appDidFinishLaunching () {
-		debug('appDidFinishLaunching');
-		return this._$appDidFinishLaunching(this.app, this.server);
-	}
-
-	function _dbDidFinishLoading () {
-		debug('dbDidFinishLoading');
-		return this._$dbDidFinishLoading(this.app, this.server, Database);
-	}
-
-	function _initializeModules () {
-		Module.init(this.app);
-		if(global.config.websocket && global.config.websocket.enabled) {
-			Websocket.init(this.app, this.server);
+		_appWillFinishLaunching () {
+			debug('appWillFinishLaunching');
+			return this._$appWillFinishLaunching(this.app, this.server);
 		}
-	}
+		_appDidFinishLaunching () {
+			debug('appDidFinishLaunching');
+			return this._$appDidFinishLaunching(this.app, this.server);
+		}
+		_dbDidFinishLoading () {
+			debug('dbDidFinishLoading');
+			return this._$dbDidFinishLoading(this.app, this.server, Database);
+		}
+		_initializeModules () {
+			Module.init(this.app);
+			if(global.config.websocket && global.config.websocket.enabled) {
+				Websocket.init(this.app, this.server);
+			}
+		}
 
-	function init (app, server) {
-		this.app = app;
-		this.server = server;
+		/*Methods definitions*/
 
-		var self = this;
+			init (app, server) {
+				this.app = app;
+				this.server = server;
 
-		Promise.resolve()
-			.then(function() {
-				return self.appWillFinishLaunching();
-			})
-			.then(function() {
-				if(global.config.session && global.config.session.enabled) {
-					Session.init().setSession(self.app);
-				}
+				Promise.resolve()
+					.then(() => this.appWillFinishLaunching())
+					.then(() => {
+						if(global.config.session && global.config.session.enabled) {
+							Session.init().setSession(this.app);
+						}
 
-				var dbPromise = Database.init()
-					.catch(function(error) {
-						debug('an error occurred during the kernel database initialization: ' + error.toString());
+						var dbPromise = Database.init()
+							.catch((error) => {
+								debug('an error occurred during the kernel database initialization: ' + error.toString());
+							});
+
+						dbPromise.then(() =>  this._initializeModules());
+
+						return dbPromise;
+					})
+					.then(() => this.dbDidFinishLoading())
+					.then(() => this.appDidFinishLaunching())
+					.catch((error) => {
+						debug('an error occurred during the kernel initialization: ' + error.toString());
 					});
-				dbPromise.then(function() { return self._initializeModules(); });
-				return dbPromise;
-			})
-			.then(function() {
-				return self.dbDidFinishLoading();
-			})
-			.then(function() {
-				return self.appDidFinishLaunching();
-			})
-			.catch(function(error) {
-				debug('an error occurred during the kernel database initialization: ' + error.toString());
-			});
+			}
 	}
 
 /*Module exportation*/

@@ -1,24 +1,17 @@
 /*Class declaration*/
+    class Manager {
+        constructor() {
+            this.create = {};
+            this.update = {};
+            this.remove = {};
+            this.get    = {};
+            this._name = 'base_manager_name';
+        }
 
-    function Manager() {
-        this.create = {};
-        this.update = {};
-        this.remove = {};
-        this.get    = {};
-
-        this._name = 'base_manager_name';
+        static clone() {
+            return new Manager();
+        }
     }
-
-/*Public static methods declarations*/
-
-    Manager.clone = clone;
 
 /*Exports*/
-
 module.exports = Manager;
-
-/*Public static methods definitions*/
-
-    function clone() {
-        return new Manager();
-    }

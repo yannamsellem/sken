@@ -1,13 +1,13 @@
 /*Bin requiring*/
-	var Kernel = require( global.paths.bin +'/kernel');
+	const Kernel = require( global.paths.bin +'/kernel');
 
 /*Services requiring*/
-	var bodyParser = require('body-parser'),
-		compress = require('compression'),
-		express = require('express'),
-		pug = require('pug'),
-		morgan = require('morgan'),
-		errorHandler = require(global.paths.vendors).errorHandler;
+	const bodyParser 	 = require('body-parser'),
+				compress 		 = require('compression'),
+				express 		 = require('express'),
+				pug 				 = require('pug'),
+				morgan 			 = require('morgan'),
+				errorHandler = require(global.paths.vendors).errorHandler;
 
 /*Kernel methods overriding*/
 

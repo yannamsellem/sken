@@ -1,12 +1,14 @@
 # README
 
-ES6 branch: Turn the application into ECMAScript2015
+####ES6 branch: Turn the application into ECMAScript2015
 
-- In progress...
-  
-  - [] Bin directory
-  - [] entry point app.js, appKernel.js, config and contants loader
-  - [] gruntfile must be into ES5
+#####TODO:
+    [x] Server bin 
+    [x] Server entry point (app.js, appKerner.js)
+    [x] Write vendors classes
+    [x] Utils classes 
+    [ ] Write databases drivers ES6
+    [ ] Import and export to ES6 versions
 
 ## NodeServer
 
@@ -21,8 +23,8 @@ A simple way to make a http(or https) node js app
 
 - Just clone the project
 - Configurations are in app/configs/config.json file
-- Chose your own database<br>
-  use a driver (MySQL, OrientBD, MSSQL, PostgreSQL, MariaDB, SQLite and MongoDB)<br>
+- Chose your own database
+  use a driver (MySQL, OrientBD, MSSQL, PostgreSQL, MariaDB, SQLite and MongoDB)
   or create one (with init and get functions)
 - Test not implement yet
 - Implement your modules

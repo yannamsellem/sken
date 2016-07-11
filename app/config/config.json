@@ -4,21 +4,18 @@
 		"address": "127.0.0.1"
 	},
 	"databases": {
-		"mongodb": {
-			"path": "drivers/mongodb-driver",
-			"host": "localhost",
-			"port": 27017,
-			"schema": {
-				"name": "nodeserver",
-				"user": "root",
-				"password": "root",
-				"options": {
-					"numberOfRetries": 10,
-					"retryMilliSeconds": 5000
+		"sequelize": {
+			"path": "drivers/sequelize",
+			"name": "nodeserver",
+			"user": "root",
+			"password": "root",
+			"options": {
+				"dialect": "mysql",
+				"host": "localhost",
+				"port": 8889,
+				"sync": {
+					"force": true
 				}
-			},
-			"server_options": {
-				"auto_reconnect": true
 			}
 		}
 	},

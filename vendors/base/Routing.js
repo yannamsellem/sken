@@ -12,25 +12,15 @@
 			this._prefix = '/';
 			this._router = express.Router();
 		}
-		/*Properties definitions*/
-		get init() {
-			return this._init;
-		}
-		set init(fn) {
-			this._$init = fn;
-		}
 
 		/*Private methods definitions*/
-		_init (app, controllers) {
+		init (app, controllers) {
 			this.app = app;
 			this.controllers = controllers || {};
 			this._loadFilters();
-			this._$init(this.app);
 			this.declare(this._router);
 			this.app.use(this._prefix, this._router);
 		}
-
-		_$init() {return Promise.resolve();}
 
 		_loadFilters() {
 			let filterPath = Path.normalize(this.currentDir + '/filters');
@@ -39,23 +29,19 @@
 				for (let i = 0; i < filtersFiles.length; i++) {
 					let fltrPath = Path.join(filterPath,filtersFiles[i]);
 					try {
-						var filter = require(fltrPath);
+						let FilterClass = require(fltrPath);
+						let filter = new FilterClass();
 						this.filters[filter._name.toLowerCase()] = filter;
 					} catch (e) {
-						console.warn('Error loading controller',e , 'at path', fltrPath);
+						throw Error(`Error loading filter at path ${fltrPath}: ${e}`);
 					}
 				}
 			}
 		}
+
 		/*Public methods definitions*/
-		initSocket() {}
+		socketInit() {}
 		declare() {}
-
-		/*Public static methods definitions*/
-		static clone (dir) {
-			return new Routing(dir);
-		}
-
 	}
 
 /*Exports*/

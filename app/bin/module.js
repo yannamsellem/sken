@@ -12,12 +12,13 @@
 				try {
 					let path = Path.normalize(global.paths.modules[i] + '/core');
 					let m = require(path);
-					modules[m._name] = m;
-					m.init(app);
-					debug('module ' + m._name + ' initialized');
+					let module = new m();
+					modules[module._name] = module;
+					module.init(app);
+					debug('module ' + module._name + ' initialized');
 				}
 				catch(exception) {
-					debug('unable to load the module ' + i);
+					debug(`unable to load the module ${i}: ${exception.message}`);
 				}
 			}
 		}

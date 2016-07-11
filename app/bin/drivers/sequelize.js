@@ -4,6 +4,8 @@ const Sequelize = require('sequelize'),
       app       = require(global.paths.app + '/app').app,
       Driver    = require(global.paths.vendors).driver;
 
+var config = null;
+
 class SequelizeDriver extends Driver {
     static init(configuration) {
         config = configuration || global.config.databases.sequelize;

@@ -3,36 +3,9 @@
 		"port": 6001,
 		"address": "127.0.0.1"
 	},
-	"databases": {
-		"sequelize": {
-			"path": "drivers/sequelize",
-			"name": "nodeserver",
-			"user": "root",
-			"password": "root",
-			"options": {
-				"dialect": "mysql",
-				"host": "localhost",
-				"port": 8889,
-				"sync": {
-					"force": true
-				}
-			}
-		}
-	},
 	"websocket": {
 		"name": "socket.io",
 		"enabled": true,
 		"path": "/socketServer/socketio.js"
-	},
-	"session" : {
-		"name" : "Redis",
-		"enabled" : true,
-		"path" : "/sessionProvider/redis.js",
-		"storeOptions" : {
-			"host" : "127.0.0.1",
-			"port" : 6379
-		},
-		"secret": "sid",
-		"key": "superman"
 	}
 }

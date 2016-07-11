@@ -7,10 +7,6 @@
             this.get    = {};
             this._name = 'base_manager_name';
         }
-
-        static clone() {
-            return new Manager();
-        }
     }
 
 /*Exports*/

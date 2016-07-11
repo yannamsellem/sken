@@ -1,21 +1,16 @@
-    var Vendor = {};
+/*Public Class declaration*/
+    class Vendor {
+        constructor() {}
 
-/*Public methods declarations*/
-
-    Vendor.init = init;
-    Vendor.get = get;
+        static init() { return Vendor; }
+        static get()  { return allowMiddleware; }
+    }
 
 module.exports = Vendor;
 
 /*Public methods definitions*/
 
-    function init() {return Vendor;}
-
-    function get() {
-        return allowMiddleware;
-    }
-
-    function allowMiddleware(request, response, next) {
+    const allowMiddleware = (request, response, next) => {
 
         response.setHeader('Access-Control-Allow-Origin', '*');
         response.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
@@ -25,4 +20,4 @@ module.exports = Vendor;
             response.sendStatus(200);
         else
             next();
-    }
+    };

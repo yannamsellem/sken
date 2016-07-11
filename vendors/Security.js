@@ -1,9 +1,8 @@
 /*Object declaration*/
-    var Security = {};
+    let Security = {};
 
 /*Service requiring*/
-
-    var crypto = require('crypto');
+    const crypto = require('crypto');
 
 /*Public methods declaration*/
 
@@ -22,11 +21,11 @@ module.exports = Security;
 /*Private methods definitions*/
 
     function _hash(text, salt) {
-        var md5Salt = crypto.createHash('md5'),
+        let md5Salt = crypto.createHash('md5'),
             md5Text = crypto.createHash('md5'),
             sha1 = crypto.createHash('sha1');
 
-        var encryptedSalt = md5Salt.update(salt).digest('hex'),
+        let encryptedSalt = md5Salt.update(salt).digest('hex'),
             encryptedText = md5Text.update(text).digest('hex');
 
         return sha1.update(encryptedSalt + encryptedText).digest('hex');
@@ -34,7 +33,7 @@ module.exports = Security;
 
     function _generateSalt(round) {
         round = round || 10;
-        var randomByte = crypto.randomBytes(16);
+        let randomByte = crypto.randomBytes(16);
         return randomByte.toString('base64', 0, round);
     }
 
@@ -42,22 +41,21 @@ module.exports = Security;
 
     function generateHash(text, round) {
         var self = this;
-        return new Promise(function (resolve, reject) {
-            var salt = self._generateSalt(round);
-            var hash = self._hash(text, salt);
+        return new Promise((resolve, reject) => {
+            let salt = self._generateSalt(round);
+            let hash = self._hash(text, salt);
 
             resolve({
-                hash: hash,
-                salt: salt
+                hash,
+                salt
             });
         });
     }
 
     function verify(encrypted, text, salt) {
         var self = this;
-        return new Promise(function (resolve, reject) {
-            var test = self._hash(text, salt);
-            if (encrypted === test) {
+        return new Promise((resolve, reject) => {
+            if (encrypted === self._hash(text, salt)) {
                 resolve();
             } else {
                 reject(Error('Encrypted not match'));

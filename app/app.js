@@ -1,9 +1,9 @@
-var http = require('http'),
-	express = require('express'),
-    debug = require('debug')('NodeServer:app');
+const http 		= require('http'),
+			express = require('express'),
+    	debug 	= require('debug')('NodeServer:app');
 
-var app = express(),
-	server = http.Server(app);
+let app 	 = express(),
+		server = http.Server(app);
 
 require(__dirname + '/constantLoader').init();
 require(__dirname + '/configLoader').init();

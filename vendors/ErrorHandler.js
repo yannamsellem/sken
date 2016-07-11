@@ -1,60 +1,67 @@
 /*Services requiring*/
 
-var moment = require('moment'),
-    fs     = require('fs'),
-    path   = require('path'),
-    morgan = require('morgan');
+const moment = require('moment'),
+      fs     = require('fs'),
+      path   = require('path');
 
-/*Class definition*/
-
-    function ErrorHandler() {}
 
 /*Private variable definitions*/
 
-    var log = {
+    const log = {
         pathDirectory: path.join(global.paths.root, 'log'),
         request: 'error.request.log',
         access: 'access.log'
     };
 
-/*Public methods definition*/
+/*Class definition*/
 
-    ErrorHandler.prototype.logError = logError;
-    ErrorHandler.prototype.errorHandler = errorHandler;
+    class ErrorHandler {
+        constructor() {
 
-/*Public static methods definition*/
+        }
 
-    ErrorHandler.set = set;
+        logError(error, request, response, next) {
+            let text = '[' + moment().format('YYYY.MM.DD - h:mm:ss') + '] - ';
+            text += (error.status|| error.statusCode || '_') + ' - ' + error.stack + '\n\n';
+
+            console.log(text);
+
+            next(error);
+        }
+
+        errorHandler(error, request, response, next) {
+            if (error.message && error.message.match(/(unauthorized|forbidden)/i)) error.status = 403;
+            if (error.message && error.message.match(/(not found|notfound)/i)) error.status = 404;
+            response.status(error.status || error.statusCode || 500).json({ message: error.message });
+        }
+
+        notFoundHandler(request, response, next) {
+            response.status(404);
+
+            // respond with html page
+            if (request.accepts('html')) {
+                response.sendFile(__dirname + '/views/404.html');
+                return;
+            }
+
+            // respond with json
+            if (request.accepts('json')) {
+                response.send({ error: 'Not found' });
+                return;
+            }
+
+            // default to plain-text. send()
+            response.type('txt').send('Not found');
+        }
+
+        static set(app) {
+            let errorHandler = new ErrorHandler();
+            app.use(errorHandler.logError);
+            app.use(errorHandler.errorHandler);
+            app.use(errorHandler.notFoundHandler);
+        }
+    }
+
 
 /*Exports*/
 module.exports = ErrorHandler;
-
-/*Public methods definitions*/
-
-    function logError(error, request, response, next) {
-        var filePath = path.join(log.pathDirectory, log.request);
-        var text = '[' + moment().format('YYYY.MM.DD - h:mm:ss') + '] - ';
-        text += (error.status || 500) + ' - ' + error.stack + '\n\n';
-
-        if (fs.existsSync(filePath)) {
-            fs.appendFileSync(filePath, text, 'utf8');
-        } else {
-            fs.writeFileSync(filePath, text, 'utf8');
-        }
-
-        next(error);
-    }
-
-    function errorHandler(error, request, response, next) {
-        if (error.message && error.message.match(/(unauthorized|forbidden|notmatch|not match)/i)) error.status = 403;
-        if (error.message && error.message.match(/(not found|notfound)/i)) error.status = 404;
-        response.status(error.status || 500).json({ message: error.message });
-    }
-
-/*Public static methods definition*/
-
-    function set(app) {
-        var errorHandler = new ErrorHandler();
-        // app.use(errorHandler.logError);
-        app.use(errorHandler.errorHandler);
-    }

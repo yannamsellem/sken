@@ -1,42 +1,41 @@
 /*Services requiring*/
-
-	var Path = require('path'),
-		debug = require('debug')('NodeServer:module');
-
-/*Class declarations*/
-
-	var ModuleLoader = function() {};
+	const Path 	= require('path'),
+				debug = require('debug')('NodeServer:module');
 
 /*Variables declarations*/
-
 	var modules = {};
 
-/*Static methods declarations*/
+/*Class declarations*/
+	class ModuleLoader {
+		static init(app) {
+			for(let i in global.paths.modules) {
+				try {
+					let path = Path.normalize(global.paths.modules[i] + '/core');
+					let m = require(path);
+					let module = new m();
+					modules[module._name] = module;
+					module.init(app);
+					debug('module ' + module._name + ' initialized');
+				}
+				catch(exception) {
+					debug(`unable to load the module ${i}: ${exception.message}`);
+				}
+			}
+		}
 
-	ModuleLoader.init = init;
-	ModuleLoader.socketInit = socketInit;
+		/**
+		 * initialize the socket part of each modules
+		 * @param  {sockets} sockets socket server instance
+		 * @param  {socket} socket private socket
+		 * @param  {session} session [optional] user session related to the private socket
+		 */
+		static socketInit(sockets, socket, session) {
+			for(var i in modules) {
+				modules[i].socketInit(sockets, socket, session);
+			}
+		}
+	}
 
 module.exports = ModuleLoader;
 
 /*Static methods definitions*/
-
-	function init(app) {
-		for(var i in global.paths.modules) {
-			try {
-				var path = Path.normalize(global.paths.modules[i] + '/core');
-				var m = require(path);
-				modules[m._name] = m;
-				m.init(app);
-				debug('module ' + m._name + ' initialized');
-			}
-			catch(exception) {
-				debug('unable to load the module ' + i);
-			}
-		}
-	}
-
-	function socketInit(sockets, socket, session) {
-		for(var i in modules) {
-			modules[i].socketInit(sockets, socket, session);
-		}
-	}

@@ -7,7 +7,7 @@ class Route extends Routing {
   }
 
   init(app, controllers) {
-    super(controllers);
+    super.init(controllers);
 
   }
 

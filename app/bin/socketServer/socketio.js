@@ -30,7 +30,7 @@
 			}
 
 			sockets.on('connection', (socket) => Module.socketInit(sockets, socket, socket.handshake.session));
-
+			
 			return this;
 		}
 

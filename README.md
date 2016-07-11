@@ -7,7 +7,7 @@
     [x] Server entry point (app.js, appKerner.js)
     [x] Write vendors classes
     [x] Utils classes 
-    [ ] Write databases drivers ES6
+    [x] Write databases drivers ES6
     [ ] Import and export to ES6 versions
 
 ## NodeServer

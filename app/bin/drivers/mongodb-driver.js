@@ -38,13 +38,17 @@
 				});*/
 
 				let factories = this.getFactoriesDirectories(),
-					promises = [Promise.resolve()];
+						promises  = [Promise.resolve()];
+
+				global.collections = {};
 
 				factories.forEach((file) => {
 					try {
-						var factory = require(file);
-						if (factory instanceof MongoFactory) {
+						let FactoryClass = require(file);
+						if (Object.getPrototypeOf(FactoryClass) === MongoFactory) {
+							let factory = new FactoryClass();
 							promises.push(factory.init(_db));
+							collections[factory._name] = factory;
 						}
 					} catch (e) {
 						console.log(e);

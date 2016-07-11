@@ -31,6 +31,7 @@
 
          /*model*/
          this.model = {};
+         this.primaryKey = '_id';
       }
 
       /*Services injections*/
@@ -71,23 +72,36 @@
       }
 
       extendModel(model) {
-         return _.extend(_.clone(this.model), model);
+          if (this.model.hasOwnProperty(this.primaryKey)) {
+              model[this.primaryKey] = this.ObjectID();
+          }
+          return _.extend(_.clone(this.model), model);
       }
 
-      insert(model) {
-         return this.prepare().then((collection) => collection.insertOne(model))
+      insertOne(model) {
+         return this.prepare().then((collection) => collection.insertOne(this.extendModel(model)))
              .then((result) => {
                  if (this._listen) this.emit(ON_INSERT_EVENT_NAME, result.insertedId);
                  return result;
              });
       }
-      /*Public static methods definitions*/
-      static clone() {
-         return new MongoFactory();
+
+      insertMany(models) {
+          if (models instanceof Array) {
+              models = models.map( model => this.extendModel(model) );
+              console.log(models);
+              return this.prepare().then((collection) => collection.insertMany(models))
+                  .then((result) => {
+                      if (this._listen) this.emit(ON_INSERT_EVENT_NAME, result.insertedId);
+                      return result;
+                  });
+          } else {
+              return Promise.reject(ReferenceError('Parameter must be an array'));
+          }
+
       }
 
       /*Public Methods overridden definitions*/
-
       toString() {
           return '[MongoFactory ' + this._name + ']';
       }

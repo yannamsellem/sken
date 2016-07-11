@@ -9,20 +9,10 @@
 			this._name = 'base_controller';
 		}
 
-		/*Properties definitions*/
-		get init() {
-			return this._init;
-		}
-		set init(fn) {
-			this._$init = fn;
-		}
-
 		/*Private methods definitions*/
-		_init(app) {
+		init(app) {
 			this.app = app;
-			this._$init(app);
 		}
-		_$init(app) {/* Need to be overridden */}
 
 		/*Public methods definitions*/
 		isDefined(parameters) {
@@ -34,11 +24,6 @@
 				}
 				resolve(parameters);
 			});
-		}
-
-		/*Static methods definitions*/
-		static clone () {
-			return new Controller();
 		}
 	}
 

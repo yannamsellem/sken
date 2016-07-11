@@ -17,7 +17,7 @@
 		constructor() {}
 
 		static init (app, server) {
-			sockets = Socketio.listen( server, { log: true });
+			sockets = Socketio.listen( server, { log: true }).sockets;
 
 			if (global.config.session && global.config.session.enabled) {
 				var handshake = socketHandshake({
@@ -29,8 +29,8 @@
 				sockets.use(handshake);
 			}
 
-			sockets.on('connection', (socket) => Module.socketInit(sockets, socket, socket.handshake.session);
-		)
+			sockets.on('connection', (socket) => Module.socketInit(sockets, socket, socket.handshake.session));
+			
 			return this;
 		}
 

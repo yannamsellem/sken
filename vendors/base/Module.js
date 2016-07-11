@@ -14,23 +14,6 @@ const _ 			 = require('lodash');
 			this.routing = undefined;
 		}
 
-		/* properties definitions */
-		get init() {
-			return this._init;
-		}
-
-		set init(fn) {
-			this._$init = fn;
-		}
-
-		get socketInit() {
-			return this._socketInit;
-		}
-
-		set socketInit(fn) {
-			this._$socketInit = fn;
-		}
-
 		/*Private methods definitions*/
 		_loadControllers() {
 			let controllerPath = Path.normalize(this.currentDir + '/controllers');
@@ -39,10 +22,11 @@ const _ 			 = require('lodash');
 				for (let i = 0; i < controllersFiles.length; i++) {
 					let ctrlPath = Path.join(controllerPath,controllersFiles[i]);
 					try {
-						var controller = require(ctrlPath);
+						let ControllerClass = require(ctrlPath);
+						let controller = new ControllerClass();
 						this.controllers[controller._name.toLowerCase()] = controller;
 					} catch (e) {
-						console.warn('Error loading controller',e, 'at path', ctrlPath);
+						throw Error(`Error loading controller at path ${ctrlPath}: ${e}`);
 					}
 				}
 			}
@@ -50,44 +34,43 @@ const _ 			 = require('lodash');
 
 		_loadRouting() {
 			let routingPath = Path.join(this.currentDir,'routing.js');
-			if (this._routing && CustomFS.checkPathSync(routingPath)) {
-				try {
-					this.routing = require(routingPath);
-				} catch (e) {
-					console.log(e);
+			if (this._routing) {
+				if (CustomFS.checkPathSync(routingPath)) {
+					try {
+						let RoutingClass = require(routingPath);
+						this.routing = new RoutingClass();
+					} catch (e) {
+						console.log(e);
+						throw e;
+					}
+				} else {
+					throw Error(`Routing file not found for the ${this._name} module`);
 				}
 			}
 		}
 
-		_init (app) {
+		init(app) {
 			this.app = app;
 
 			this._loadControllers();
 			this._loadRouting();
-			this._$init(this.app);
+
 			if (!_.isEmpty(this.controllers)) {
-				_(this.controllers).map((value) => {
-					value.init(this.app);
-				});
+				for (var key in this.controllers) {
+					if (this.controllers.hasOwnProperty(key)) {
+						this.controllers[key].init(this.app);
+					}
+				}
 			}
 			if (this._routing && this.routing !== undefined) {
-				this.routing.init(this.app, self.controllers);
+				this.routing.init(this.app, this.controllers);
 			}
 		}
 
-		_$init (app) {/*Need To be overridden*/}
-
-		_socketInit (sockets, socket, session) {
-			this._$socketInit(sockets, socket, session);
+		socketInit(sockets, socket, session) {
 			if (this._routing && this.routing !== undefined) {
-				this.routing.initSocket(sockets, socket, session);
+				this.routing.socketInit(sockets, socket, session);
 			}
-		}
-		_$socketInit (sockets, socket, session) {/*Need To be overridden*/}
-
-		/*Public static methods definitions*/
-		static clone (dir) {
-			return new Module(dir);
 		}
 	}
 

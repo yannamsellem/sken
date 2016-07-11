@@ -5,6 +5,7 @@ class TestModule extends Module {
     super(__dirname);
 
     this._name = 'Test';
+    this._routing = true;
   }
 
   init(app) {

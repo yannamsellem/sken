@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize'),
       debug     = require('debug')('NodeServer:Sequelize'),
       db        = {models: {}},
-      app       = require(global.paths.app + '/app').app,
+    //   app       = require(global.paths.app + '/app').app,
       Driver    = require(global.paths.vendors).driver;
 
 var config = null;
@@ -38,7 +38,8 @@ class SequelizeDriver extends Driver {
 
         }).then(function () {
             sequelize.sync();
-            app.set('models', db.models);
+            // app.set('models', db.models);
+            global.models = db.models;
             return this;
         });
     }

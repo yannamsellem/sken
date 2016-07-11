@@ -3,6 +3,25 @@
 		"port": 6001,
 		"address": "127.0.0.1"
 	},
+	"databases": {
+		"mongodb": {
+			"path": "drivers/mongodb-driver",
+			"host": "localhost",
+			"port": 27017,
+			"schema": {
+				"name": "nodeserver",
+				"user": "root",
+				"password": "root",
+				"options": {
+					"numberOfRetries": 10,
+					"retryMilliSeconds": 5000
+				}
+			},
+			"server_options": {
+				"auto_reconnect": true
+			}
+		}
+	},
 	"websocket": {
 		"name": "socket.io",
 		"enabled": true,

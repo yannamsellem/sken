@@ -1,5 +1,5 @@
 /*Bin requiring*/
-	const Kernel = require( global.paths.bin +'/kernel');
+	const Kernel = require(paths.bin +'/kernel');
 
 /*Services requiring*/
 	const bodyParser 	 = require('body-parser'),
@@ -7,18 +7,11 @@
 				express 		 = require('express'),
 				pug 				 = require('pug'),
 				morgan 			 = require('morgan'),
-				errorHandler = require(global.paths.vendors).errorHandler;
+				errorHandler = require(paths.vendors).errorHandler;
 
 /*Kernel methods overriding*/
 
-	Kernel.appWillFinishLaunching = appWillFinishLaunching;
-	Kernel.appDidFinishLaunching = appDidFinishLaunching;
-
-module.exports = Kernel;
-
-/*Kernel methods definitions*/
-
-	function appWillFinishLaunching(app) {
+	Kernel.appWillFinishLaunching = (app) => {
 		app.disable('x-powered-by');
 		app.engine('pug', pug.__express);
 		app.set('view engine', 'pug');
@@ -28,8 +21,10 @@ module.exports = Kernel;
 		app.use(bodyParser.json());
 		app.use(express.static(global.paths.assets));
 		app.use(morgan('dev'));
-	}
+	};
 
-	function appDidFinishLaunching (app) {
+	Kernel.appDidFinishLaunching = (app) => {
 		errorHandler.set(app);
-	}
+	};
+
+module.exports = Kernel;

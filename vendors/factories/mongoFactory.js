@@ -89,7 +89,6 @@
       insertMany(models) {
           if (models instanceof Array) {
               models = models.map( model => this.extendModel(model) );
-              console.log(models);
               return this.prepare().then((collection) => collection.insertMany(models))
                   .then((result) => {
                       if (this._listen) this.emit(ON_INSERT_EVENT_NAME, result.insertedId);

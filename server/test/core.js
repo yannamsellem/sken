@@ -10,7 +10,6 @@ class TestModule extends Module {
 
   init(app) {
     super.init(app);
-    // collections.Test.insertMany([{name: 'yann'}, {name: 'yolo'}]).then(console.log).catch(console.log);
   }
 }
 

@@ -1,6 +1,6 @@
 # README
 
-####ES6 branch: Turn the application into ECMAScript2015
+####the application is coding in ECMAScript2015
 
 #####TODO:
     [x] Server bin 
@@ -17,7 +17,7 @@ A simple way to make a http(or https) node js app
 ## What is this repository for?
 
 - Node http server
-- 0.2.0
+- 2.0.0
 
 ## How do I get set up?
 

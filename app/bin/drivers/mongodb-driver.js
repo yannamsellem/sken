@@ -40,7 +40,7 @@
 				let factories = this.getFactoriesDirectories(),
 						promises  = [Promise.resolve()];
 
-				global.collections = {};
+				db.collections = {};
 
 				factories.forEach((file) => {
 					try {
@@ -48,7 +48,7 @@
 						if (Object.getPrototypeOf(FactoryClass) === MongoFactory) {
 							let factory = new FactoryClass();
 							promises.push(factory.init(_db));
-							collections[factory._name] = factory;
+							db.collections[factory._name] = factory;
 						}
 					} catch (e) {
 						console.log(e);

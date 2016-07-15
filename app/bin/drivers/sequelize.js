@@ -2,14 +2,14 @@ const Sequelize = require('sequelize'),
       debug     = require('debug')('NodeServer:Sequelize'),
       db        = {models: {}},
     //   app       = require(global.paths.app + '/app').app,
-      Driver    = require(global.paths.vendors).driver;
+      Driver    = require(paths.vendors).driver;
 
 var config = null;
 
 class SequelizeDriver extends Driver {
     static init(configuration) {
         config = configuration || global.config.databases.sequelize;
-        config.logging = debug;
+        config.options.logging = config.options.logging !== undefined ? config.options.logging : debug;
         return this._init();
     }
 
@@ -39,7 +39,7 @@ class SequelizeDriver extends Driver {
         }).then(function () {
             sequelize.sync();
             // app.set('models', db.models);
-            global.models = db.models;
+            // global.models = db.models;
             return this;
         });
     }

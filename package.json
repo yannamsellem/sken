@@ -40,7 +40,8 @@
     "redis": "^2.6.1",
     "sequelize": "^3.23.3",
     "socket.io": "^1.4.6",
-    "socket.io-handshake": "0.0.10"
+    "socket.io-handshake": "0.0.10",
+    "sqlite3": "^3.1.4"
   },
   "devDependencies": {
     "grunt": "^1.0.1",

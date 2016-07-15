@@ -28,9 +28,6 @@
 		}
 
 		static get(name) {
-
-			var self = this;
-
 			return new Promise((resolve, reject) => {
 				if(name && databases[name.toLowerCase()]) {
 					resolve(databases[name.toLowerCase()].get());

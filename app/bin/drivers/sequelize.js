@@ -4,17 +4,14 @@ const Sequelize = require('sequelize'),
     //   app       = require(global.paths.app + '/app').app,
       Driver    = require(paths.vendors).driver;
 
-var config = null;
-
 class SequelizeDriver extends Driver {
-    static init(configuration) {
-        config = configuration || global.config.databases.sequelize;
-        config.options.logging = config.options.logging !== undefined ? config.options.logging : debug;
+    static init(configuration = config.databases.sequelize) {
+        configuration.options.logging = configuration.options.logging !== undefined ? configuration.options.logging : debug;
         return this._init();
     }
 
-    static _init() {
-        let sequelize = new Sequelize(config.name, config.user, config.password, config.options);
+    static _init(configuration) {
+        let sequelize = new Sequelize(configuration.name, configuration.user, configuration.password, configuration.options);
 
         return sequelize.authenticate().then(() => {
             let factories = this.getFactoriesDirectories();

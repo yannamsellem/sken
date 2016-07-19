@@ -35,15 +35,12 @@ module.exports = Security;
 /*Public Methods definitions*/
 
     function generateHash(text, round) {
-        var self = this;
-        return new Promise((resolve, reject) => {
-            let salt = self._generateSalt(round);
-            let hash = self._hash(text, salt);
+        let salt = this._generateSalt(round);
+        let hash = this._hash(text, salt);
 
-            resolve({
-                hash,
-                salt
-            });
+        return Promise.resolve({
+            hash,
+            salt
         });
     }
 

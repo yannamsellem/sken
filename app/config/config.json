@@ -23,5 +23,8 @@
 		"name": "socket.io",
 		"enabled": false,
 		"path": "/socketServer/socketio.js"
+	},
+	"security": {
+		"secret": "superman secret"
 	}
 }

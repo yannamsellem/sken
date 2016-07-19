@@ -21,20 +21,15 @@ module.exports = Security;
 /*Private methods definitions*/
 
     function _hash(text, salt) {
-        let md5Salt = crypto.createHash('md5'),
-            md5Text = crypto.createHash('md5'),
-            sha1 = crypto.createHash('sha1');
+        let secret = config.security.secret || 'a secret';
+        let hmac = crypto.createHmac('sha256', secret);
 
-        let encryptedSalt = md5Salt.update(salt).digest('hex'),
-            encryptedText = md5Text.update(text).digest('hex');
-
-        return sha1.update(encryptedSalt + encryptedText).digest('hex');
+        return hmac.update(text + salt).digest('hex');
     }
 
-    function _generateSalt(round) {
-        round = round || 10;
+    function _generateSalt(round = 10) {
         let randomByte = crypto.randomBytes(16);
-        return randomByte.toString('base64', 0, round);
+        return randomByte.toString('hex', 0, round);
     }
 
 /*Public Methods definitions*/

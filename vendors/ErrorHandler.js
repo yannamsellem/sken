@@ -22,7 +22,7 @@ const moment = require('moment'),
 
         logError(error, request, response, next) {
             let text = '[' + moment().format('YYYY.MM.DD - h:mm:ss') + '] - ';
-            text += (error.status|| error.statusCode || '_') + ' - ' + error.stack + '\n\n';
+            text += (error.status|| error.statusCode || '_') + ' - \n\n' + error.stack + '\n\n';
 
             console.log(text);
 

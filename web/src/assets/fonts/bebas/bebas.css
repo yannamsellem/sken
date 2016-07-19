@@ -3,8 +3,8 @@
 	src: url(BebasNeueRegular.otf);
 
 	font-weight:normal;
-    font-style:normal;
-    font-variant:normal;
+	font-style:normal;
+	font-variant:normal;
 }
 
 @font-face {
@@ -17,20 +17,20 @@
 @font-face {
 	font-family: "Bebas";
 	src: url(BebasNeueThin.otf);
-	
+
 	font-weight: 100;
 }
 
 @font-face {
 	font-family: "Bebas";
 	src: url(BebasNeueLight.otf);
-	
+
 	font-weight: 200;
 }
 
 @font-face {
 	font-family: "Bebas";
 	src: url(BebasNeueBook.otf);
-	
+
 	font-weight: 300;
 }

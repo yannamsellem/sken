@@ -18,5 +18,8 @@
 				"logging": null
 			}
 		}
+	},
+	"security": {
+		"secret": "superman secret"
 	}
 }

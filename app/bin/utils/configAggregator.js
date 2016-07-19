@@ -1,16 +1,13 @@
 /*Services requiring*/
 
-	var path = require('path');
+	const path = require('path');
 
 /* Class declaration */
 
 	class ConfigAggregator {
-		static aggregate (prefix, target) {
-			prefix = prefix || 'config';
-			target = target || '_';
-
+		static aggregate (prefix = 'config', target = '_') {
 			var configJson = {},
-				configPath = path.normalize(global.paths.app + '/config/' + prefix + '.json');
+				configPath = path.normalize(global.paths.app + '/configs/' + prefix + '.json');
 
 			try {
 				configJson = require(configPath);

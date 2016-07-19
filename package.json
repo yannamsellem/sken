@@ -35,7 +35,6 @@
     "mongodb": "^2.1.18",
     "morgan": "^1.7.0",
     "mysql": "^2.11.1",
-    "orientjs": "^2.2.0",
     "pug": "^2.0.0-beta2",
     "redis": "^2.6.1",
     "sequelize": "^3.23.3",

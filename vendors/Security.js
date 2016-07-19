@@ -45,9 +45,8 @@ module.exports = Security;
     }
 
     function verify(encrypted, text, salt) {
-        var self = this;
         return new Promise((resolve, reject) => {
-            if (encrypted === self._hash(text, salt)) {
+            if (encrypted === this._hash(text, salt)) {
                 resolve();
             } else {
                 reject(Error('Encrypted not match'));

@@ -1,5 +1,5 @@
 /*Services requiring*/
-	var ConfigAggregator = require('./bin/utils/configAggregator');
+	var ConfigAggregator = require(__dirname + '/bin/utils/configAggregator');
 
 /*Class declaration*/
 	class ConfigLoader {

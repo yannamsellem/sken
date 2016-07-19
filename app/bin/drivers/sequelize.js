@@ -7,7 +7,7 @@ const Sequelize = require('sequelize'),
 class SequelizeDriver extends Driver {
     static init(configuration = config.databases.sequelize) {
         configuration.options.logging = configuration.options.logging !== undefined ? configuration.options.logging : debug;
-        return this._init();
+        return this._init(configuration);
     }
 
     static _init(configuration) {

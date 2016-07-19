@@ -1,3 +1,5 @@
-"security": {
-  "secret": "superman secret"
+{
+  "security": {
+    "secret": "superman secret"
+  }
 }

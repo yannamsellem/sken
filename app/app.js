@@ -9,8 +9,12 @@ require(__dirname + '/constantLoader').init();
 require(__dirname + '/configLoader').init();
 require(__dirname + '/appKernel').init(app, server);
 
-server.listen(global.config.server.port, global.config.server.address, function() {
-	debug('Server is listening on %s:%d - [%s]', this.address().address, this.address().port, 'GhostxRipper');
+server.listen(config.server.port, config.server.address, function() {
+	debug('%s application is listening on %s:%d - [%s]',
+		process.env.npm_package_name,
+		this.address().address,
+		this.address().port,
+		process.env.npm_package_author_name);
 });
 
 module.exports = { app: app, server: server };

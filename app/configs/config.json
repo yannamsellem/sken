@@ -11,7 +11,7 @@
 			"password": "",
 			"options": {
 				"dialect": "sqlite",
-				"storage": "/Users/yannamsellem/Developer/node/framework/data/database.sqlite",
+				"storage": "/data/database.sqlite",
 				"sync": {
 					"force": true
 				},

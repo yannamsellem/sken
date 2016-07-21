@@ -7,7 +7,7 @@
   "scripts": {
     "start": "DEBUG=NodeServer:*  node app/app.js",
     "debug": "DEBUG=NodeServer:* node --debug app/app.js",
-    "devserver": "supervisor --watch server app/app.js",
+    "devserver": "DEBUG=NodeServer:* supervisor --watch server app/app.js",
     "prestart": "npm install",
     "postinstall": "bower install"
   },

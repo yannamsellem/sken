@@ -1,8 +1,8 @@
 {
-  "name": "node-server",
+  "name": "sken",
   "version": "2.0.0",
   "private": true,
-  "description": "Node server pattern, tree sample",
+  "description": "Starter Kit for Express and Node.js",
   "main": "app/app.js",
   "scripts": {
     "start": "DEBUG=NodeServer:*  node app/app.js",
@@ -18,7 +18,7 @@
     "tree"
   ],
   "author": "GhostxRipper",
-  "license": "ISC",
+  "license": "GNU",
   "repository": {
     "type": "git",
     "url": "git+https://bitbucket.org/GhostxRipper/nodeserver.git"

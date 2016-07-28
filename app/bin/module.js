@@ -1,6 +1,6 @@
 /*Services requiring*/
 	const Path 	= require('path'),
-				debug = require('debug')('NodeServer:module');
+				debug = require('debug')('Sken:module');
 
 /*Variables declarations*/
 	var modules = {};

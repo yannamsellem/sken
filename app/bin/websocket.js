@@ -1,6 +1,6 @@
 /*Service requiring*/
 	const path 	= require('path'),
-				debug = require('debug')('NodeServer:websocket');
+				debug = require('debug')('Sken:websocket');
 
 
 /*Variable declaration*/

@@ -7,7 +7,7 @@ each module must have only one core file and none or only one routing file
 
 in the module folder you can create a folder that contains all of your controllers but you must call it "controllers"
 each controller implement the base class controller. You can do the operation for controllers and filters whose to type
-have base class creating for the NodeServer application
+have base class creating for the Sken application
 
 in routing file you can access all of your controllers and filters by "this.controllers.theNameOfYourController" or
 "this.filters.the.nameOfYourFilter" to access the methods

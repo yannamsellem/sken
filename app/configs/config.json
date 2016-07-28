@@ -6,7 +6,7 @@
 	"databases" : {
 		"sequelize": {
 			"path": "drivers/sequelize",
-			"name": "nodeserver",
+			"name": "sken",
 			"user": "",
 			"password": "",
 			"options": {

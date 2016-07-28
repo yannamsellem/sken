@@ -1,7 +1,7 @@
 /* Requiring stuff */
 const expressSession = require('express-session'),
       RedisStore     = require('connect-redis')(expressSession),
-      debug          = require('debug')('NodeServer:Redis'),
+      debug          = require('debug')('Sken:Redis'),
       redis          = require('redis'),
     //   client         = redis.createClient({host: 'localhost', port: 6379}),
       options        = global.config.session.storeOptions,

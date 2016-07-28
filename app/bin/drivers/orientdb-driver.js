@@ -1,6 +1,6 @@
 /*Service requiring*/
 var OrientDB = require('orientjs');
-var debug = require('debug')('NodeServer:OrientDB');
+var debug = require('debug')('Sken:OrientDB');
 
 /*Object declaration*/
 var DATABASE = {};

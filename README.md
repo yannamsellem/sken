@@ -2,7 +2,7 @@
 
 #### the application is coding in ECMAScript2015
 
-## NodeServer: SKEN - Starter Kit for Express and Node.js
+## SKEN - Starter Kit for Express and Node.js
 
 A simple way to make a http (or https) node js app
 

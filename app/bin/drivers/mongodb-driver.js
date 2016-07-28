@@ -1,6 +1,6 @@
 /*Service requiring*/
 	const MongoClient  = require('mongodb').MongoClient,
-				debug 			 = require('debug')('NodeServer:MongoDB'),
+				debug 			 = require('debug')('Sken:MongoDB'),
 				MongoFactory = require(global.paths.vendors).factories.MongoFactory,
 				Driver 			 = require(global.paths.vendors).driver;
 

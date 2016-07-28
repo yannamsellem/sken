@@ -1,6 +1,6 @@
 /*Services requiring*/
 
-	const debug = require('debug')('NodeServer:database');
+	const debug = require('debug')('Sken:database');
 	const path  = require('path');
 
 /*Variable declarations*/

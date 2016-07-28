@@ -1,6 +1,6 @@
 /*Service requiring*/
 	var MySql = require('mysql'),
-		debug = require('debug')('NodeServer:MySql');
+		debug = require('debug')('Sken:MySql');
 
 /*Class declaration*/
 	var configuration = null;

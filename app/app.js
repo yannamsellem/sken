@@ -1,6 +1,6 @@
 const http 		= require('http'),
 			express = require('express'),
-    	debug 	= require('debug')('NodeServer:app');
+    	debug 	= require('debug')('Sken:app');
 
 let app 	 = express(),
 		server = http.Server(app);

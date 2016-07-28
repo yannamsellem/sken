@@ -1,6 +1,6 @@
 /*Service requiring*/
 	const path 	= require('path'),
-				debug = require('debug')('NodeServer:session');
+				debug = require('debug')('Sken:session');
 
 /*Static Variable*/
 	var Session = null;

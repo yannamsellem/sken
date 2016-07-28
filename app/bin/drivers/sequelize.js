@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize'),
-      debug     = require('debug')('NodeServer:Sequelize'),
+      debug     = require('debug')('Sken:Sequelize'),
       db        = {models: {}},
     //   app       = require(global.paths.app + '/app').app,
       Driver    = require(paths.vendors).driver;

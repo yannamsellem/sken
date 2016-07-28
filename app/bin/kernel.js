@@ -4,7 +4,7 @@
 				Database  = require(__dirname + '/database'),
 				Session   = require(__dirname + '/session'),
 				Websocket = require(__dirname + '/websocket'),
-				debug 		= require('debug')('NodeServer:kernel');
+				debug 		= require('debug')('Sken:kernel');
 
 /*Class declaration*/
 

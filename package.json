@@ -5,9 +5,9 @@
   "description": "Starter Kit for Express and Node.js",
   "main": "app/app.js",
   "scripts": {
-    "start": "DEBUG=NodeServer:*  node app/app.js",
-    "debug": "DEBUG=NodeServer:* node --debug app/app.js",
-    "devserver": "DEBUG=NodeServer:* supervisor --watch server app/app.js",
+    "start": "DEBUG=Sken:*  node app/app.js",
+    "debug": "DEBUG=Sken:* node --debug app/app.js",
+    "devserver": "DEBUG=Sken:* supervisor --watch server app/app.js",
     "prestart": "npm install",
     "postinstall": "bower install"
   },
@@ -21,7 +21,7 @@
   "license": "GNU",
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/GhostxRipper/nodeserver.git"
+    "url": "git+https://bitbucket.org/GhostxRipper/sken.git"
   },
   "dependencies": {
     "body-parser": "^1.15.1",

@@ -72,6 +72,10 @@ const _ 			 = require('lodash');
 				this.routing.socketInit(sockets, socket, session);
 			}
 		}
+
+		toString() {
+			return `[Module ${this._name}]`;
+		}
 	}
 
 	/*Exports*/

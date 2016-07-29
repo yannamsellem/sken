@@ -25,6 +25,10 @@
 				resolve(parameters);
 			});
 		}
+
+		toString() {
+			return `[Controller ${this._name}]`;
+		}
 	}
 
 /*Exports*/

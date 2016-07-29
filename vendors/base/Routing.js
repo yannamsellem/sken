@@ -42,6 +42,10 @@
 		/*Public methods definitions*/
 		socketInit() {}
 		declare() {}
+
+		toString() {
+			return `[Routing ${Path.basename(this.currentDir)}]`;
+		}
 	}
 
 /*Exports*/

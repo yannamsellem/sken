@@ -102,7 +102,7 @@
 
       /*Public Methods overridden definitions*/
       toString() {
-          return '[MongoFactory ' + this._name + ']';
+          return `[MongoFactory ${this._name}]`;
       }
 
     }

@@ -44,6 +44,7 @@ A simple way to make a http (or https) node js app
   - [ ] Import and export (ES6 versions)
   - [ ] Unit testing
   - [ ] improve Grunt implementation
+  - [ ] update module: create a script to update SKEN
 
 ## Who do I talk to?
 

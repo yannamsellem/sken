@@ -1,6 +1,6 @@
 # README
 
-#### the application is coding in ECMAScript2015
+#### This application is programmed ECMAScript2015
 
 ## SKEN - Starter Kit for Express and Node.js
 

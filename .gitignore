@@ -1,7 +1,8 @@
+# Library node and  bower
 node_modules/*
-*.todo
-**/.*
 web/src/assets/**/libraries/*
-!.bowerrc
-!.jshintrc
 npm-debug.log
+
+# System and IDE used
+.idea
+.DS_Store

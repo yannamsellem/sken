@@ -9,7 +9,7 @@
     "debug": "DEBUG=Sken:* node --debug app/app.js",
     "devserver": "DEBUG=Sken:* supervisor --watch server app/app.js",
     "prestart": "npm install",
-    "postinstall": "bower install"
+    "postinstall": "# bower install"
   },
   "keywords": [
     "node",
@@ -38,7 +38,8 @@
     "sequelize": "^3.23.3",
     "socket.io": "^1.4.6",
     "socket.io-handshake": "0.0.10",
-    "sqlite3": "^3.1.4"
+    "sqlite3": "^3.1.4",
+    "ws": "^1.1.1"
   },
   "devDependencies": {
     "grunt": "^1.0.1",

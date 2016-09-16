@@ -21,6 +21,7 @@
 				}
 				catch(exception) {
 					debug('unable to load the database '+ i);
+					promises.push( Promise.reject(exception) );
 				}
 			}
 

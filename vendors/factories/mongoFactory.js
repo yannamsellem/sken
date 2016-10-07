@@ -75,7 +75,7 @@
           if (this.model.hasOwnProperty(this.primaryKey)) {
               model[this.primaryKey] = this.ObjectID();
           }
-          return _.extend(_.clone(this.model), model);
+          return _.merge({}, this.model, model);
       }
 
       insertOne(model) {

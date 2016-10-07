@@ -1,0 +1,7 @@
+Todo: updates once in a while
+
+Dependencies:
+npm i --save body-parser compression connect-redis cookie-parser debug express express-session pug lodash mongodb morgan mysql orientjs redis sequelize socket.io socket.io-handshake
+
+Dev-dependencies:
+npm i --dev-save grunt grunt-contrib-clean grunt-contrib-concat grunt-contrib-copy grunt-contrib-cssmin grunt-contrib-imagemin grunt-contrib-sass grunt-contrib-uglify grunt-contrib-watch grunt-jade-usemin grunt-spritesmith grunt-usemin jit-grunt time-grunt

@@ -1,6 +1,6 @@
 # README
 
-#### the application is coding in ECMAScript2015
+#### This application is programmed in ECMAScript2015
 
 ## SKEN - Starter Kit for Express and Node.js
 
@@ -44,6 +44,7 @@ A simple way to make a http (or https) node js app
   - [ ] Import and export (ES6 versions)
   - [ ] Unit testing
   - [ ] improve Grunt implementation
+  - [ ] update module: create a script to update SKEN
 
 ## Who do I talk to?
 

@@ -3,5 +3,11 @@
 		"name": "socket.io",
 		"enabled": true,
 		"path": "/socketServer/socketio.js"
+	},
+	"websocket": {
+		"name": "WebSocket",
+		"enabled": true,
+		"path": "/socketServer/ws.js",
+		"client_path": "/ws"
 	}
 }

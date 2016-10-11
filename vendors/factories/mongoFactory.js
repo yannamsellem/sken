@@ -32,6 +32,7 @@
          /*model*/
          this.model = {};
          this.primaryKey = '_id';
+         this.uniques = [];
       }
 
       /*Services injections*/
@@ -57,6 +58,7 @@
 
          return promise.then(() => this._db.createCollection(this._collectionName))
              .then((collection) => {
+                 this.uniques.forEach( key => this.createIndex(key, { unique: true }));
                  if (this._listen) this.emit(ON_CREATE_EVENT_NAME, collection);
                  return collection;
              });
@@ -82,7 +84,7 @@
          return this.prepare().then((collection) => collection.insertOne(this.extendModel(model)))
              .then((result) => {
                  if (this._listen) this.emit(ON_INSERT_EVENT_NAME, result.insertedId);
-                 return result;
+                 return result.ops;
              });
       }
 
@@ -92,12 +94,32 @@
               return this.prepare().then((collection) => collection.insertMany(models))
                   .then((result) => {
                       if (this._listen) this.emit(ON_INSERT_EVENT_NAME, result.insertedIds);
-                      return result;
+                      return result.ops;
                   });
           } else {
               return Promise.reject(ReferenceError('Parameter must be an array'));
           }
 
+      }
+
+      updateOne(condition, fields) {
+          return this.prepare().then( collection => collection.updateOne(condition, { $set: fields }))
+            .then( result => result.result );
+      }
+
+      updateMany(condition, fields) {
+          return this.prepare().then(collection => collection.updateMany(condition, { $set: fields }, { multi: true }))
+            .then( result => result.result );
+      }
+
+      removeOne(condition) {
+          return this.prepare().then( collection => collection.deleteOne(condition))
+            .then(result => result.deletedCount)
+      }
+
+      removeMany(condition) {
+          return this.prepare().then( collection => collection.deleteMany(condition))
+            .then(result => result.deletedCount)
       }
 
       /*Public Methods overridden definitions*/

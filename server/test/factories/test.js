@@ -1,7 +1,7 @@
 const MongoFactory = require(paths.vendors).factories.MongoFactory;
 
 class TestCollection extends MongoFactory {
-  constructor() {
+  constructor () {
     super();
 
     this._name = 'Test';

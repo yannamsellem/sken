@@ -1,42 +1,40 @@
-/*Services requiring*/
-	const Socketio 		 		= require('socket.io'),
-			  cookieParser 		= require('cookie-parser'),
-				socketHandshake = require('socket.io-handshake');
+/* Services requiring */
+const Socketio = require('socket.io');
+const cookieParser = require('cookie-parser');
+const socketHandshake = require('socket.io-handshake');
 
-/*Bins requiering*/
+/* Bins requiering */
 
-	const Session = require( global.paths.bin +'/session');
-	const Module 	= require( global.paths.bin + '/module');
+const Session = require(global.paths.bin + '/session');
+const Module = require(global.paths.bin + '/module');
 
-/*Variables declaration*/
-		var sockets = null;
+/* Variables declaration */
+var sockets = null;
 
-/*Class declaration*/
+/* Class declaration */
 
-	class SocketIoServer {
-		constructor() {}
+class SocketIoServer {
+  static init (app, server) {
+    sockets = Socketio.listen(server, { log: true }).sockets;
 
-		static init (app, server) {
-			sockets = Socketio.listen( server, { log: true }).sockets;
+    if (global.config.session && global.config.session.enabled) {
+      var handshake = socketHandshake({
+        store: Session.getSessionStore(),
+        key: global.config.session.key,
+        secret: global.config.session.secret,
+        parser: cookieParser()
+      });
+      sockets.use(handshake);
+    }
 
-			if (global.config.session && global.config.session.enabled) {
-				var handshake = socketHandshake({
-					store: Session.getSessionStore(),
-					key: global.config.session.key,
-					secret:  global.config.session.secret,
-					parser: cookieParser()
-				});
-				sockets.use(handshake);
-			}
+    sockets.on('connection', (socket) => Module.socketInit(sockets, socket, socket.handshake.session));
+    return this;
+  }
 
-			sockets.on('connection', (socket) => Module.socketInit(sockets, socket, socket.handshake.session));
-			return this;
-		}
+  static get () {
+    return sockets;
+  }
+}
 
-		static get() {
-			return sockets;
-		}
-	}
-
-/*Exports*/
+/* Exports */
 module.exports = SocketIoServer;

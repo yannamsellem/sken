@@ -1,14 +1,14 @@
 /* Class declaration */
 
-	class Filter {
-		constructor() {
-			this._name = 'base_filter';
-		}
+class Filter {
+  constructor () {
+    this._name = 'base_filter';
+  }
 
-		toString() {
-			return `[Filter ${this._name}]`;
-		}
-	}
+  toString () {
+    return `[Filter ${this._name}]`;
+  }
+}
 
-/*Exports*/
+/* Exports */
 module.exports = Filter;

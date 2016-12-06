@@ -1,11 +1,12 @@
 const Filter = require(paths.vendors).base.filter;
 
 class TestFilter extends Filter {
-  constructor() {
+  constructor () {
+    super();
     this._name = 'test';
   }
 
-  test(request, response, next) {
+  test (request, response, next) {
     console.log('Test was here!');
     next();
   }

@@ -3,7 +3,7 @@ const Controller = require(paths.vendors).base.controller;
 const Databases = require(paths.bin + '/database');
 
 class TestController extends Controller {
-  constructor() {
+  constructor () {
     super();
 
     this._name = 'Test';
@@ -13,29 +13,28 @@ class TestController extends Controller {
         Model: db.models.Model
       };
     }).catch(console.log);
-
   }
 
-  init(app) {
+  init (app) {
     super.init(app);
 
-    this.get.user = ((request, response, next) => {
+    this.get.user = (request, response, next) => {
       this.isDefined({
         id: request.params.id
       })
-        .then( (parameters) => this.factories.Model.findByPrimary(parameters.id))
-        .then( model => response.json(model) )
+        .then((parameters) => this.factories.Model.findByPrimary(parameters.id))
+        .then(model => response.json(model))
         .catch(next);
-    }).bind(this);
+    };
 
-    this.post.user = ((request, response, next) => {
+    this.post.user = (request, response, next) => {
       this.isDefined({
         name: request.body.name
       })
         .then(parameters => this.factories.Model.create(parameters))
         .then(model => response.json(model))
         .catch(next);
-    }).bind(this);
+    };
   }
 }
 

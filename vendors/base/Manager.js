@@ -1,21 +1,21 @@
-/*Class declaration*/
-    class Manager {
-        constructor() {
-            this.create = {};
-            this.update = {};
-            this.remove = {};
-            this.get    = {};
-            this._name = 'base_manager_name';
+/* Class declaration */
+class Manager {
+  constructor () {
+    this.create = {};
+    this.update = {};
+    this.remove = {};
+    this.get = {};
+    this._name = 'base_manager_name';
 
-            this.init();
-        }
+    this.init();
+  }
 
-        init() {}
+  init () {}
 
-        toString() {
-			return `[Manager ${this._name}]`;
-		}
-    }
+  toString () {
+    return `[Manager ${this._name}]`;
+  }
+}
 
-/*Exports*/
+/* Exports */
 module.exports = Manager;

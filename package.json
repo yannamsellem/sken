@@ -42,6 +42,9 @@
     "ws": "^1.1.1"
   },
   "devDependencies": {
+    "eslint": "^3.11.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-concat": "^1.0.0",

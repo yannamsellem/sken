@@ -1,15 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
   let Model = sequelize.define('Model',
-  {
-    name: {
+    {
+      name: {
         type: DataTypes.STRING,
         allowNull: false
-    }
-  }, {
-    classMethods: {
+      }
+    }, {
+      classMethods: {
         associate: (models) => {}
-    }
-  });
+      }
+    });
 
   return Model;
 };

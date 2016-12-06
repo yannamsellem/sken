@@ -1,7 +1,7 @@
 const Routing = require(paths.vendors).base.routing;
 
 class Route extends Routing {
-  constructor() {
+  constructor () {
     super();
     this._prefix = '/api';
   }
@@ -11,12 +11,12 @@ class Route extends Routing {
   //
   // }
 
-  declare(router) {
+  declare (router) {
     router.get('/users/:id', this.controllers.test.get.user);
     router.post('/users', this.controllers.test.post.user);
   }
 
-  socketInit(sockets, socket, session) {
+  socketInit (sockets, socket, session) {
 
   }
 }

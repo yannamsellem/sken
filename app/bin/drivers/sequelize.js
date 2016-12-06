@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize');
 const debug = require('debug')('Sken:Sequelize');
+// const { basename } = require('path');
+
 const db = {models: {}};
-    //   app       = require(global.paths.app + '/app').app,
 const Driver = require(paths.vendors).driver;
 
 class SequelizeDriver extends Driver {
@@ -17,10 +18,10 @@ class SequelizeDriver extends Driver {
       let factories = this.getFactoriesDirectories();
       factories.forEach((file) => {
         try {
-          var model = sequelize.import(file);
+          const model = sequelize.import(file);
           db.models[model.name] = model;
         } catch (e) {
-                    // debug('Not a Sequelize factory:', path.basename(file));
+          // debug('Not a Sequelize factory:', basename(file));
         }
       });
 
@@ -34,8 +35,8 @@ class SequelizeDriver extends Driver {
       db.Sequelize = Sequelize;
     }).then(function () {
       sequelize.sync();
-            // app.set('models', db.models);
-            // global.models = db.models;
+      // app.set('models', db.models);
+      // global.models = db.models;
       return this;
     });
   }

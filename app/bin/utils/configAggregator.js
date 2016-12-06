@@ -7,7 +7,7 @@ const path = require('path');
 class ConfigAggregator {
   static aggregate (prefix = 'config', target = '_') {
     let configJson = {};
-    let configPath = path.normalize(global.paths.app + '/configs/' + prefix + '.json');
+    let configPath = path.normalize(`${global.paths.app}/configs/${prefix}.json`);
 
     try {
       configJson = require(configPath);

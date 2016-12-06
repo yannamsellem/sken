@@ -15,7 +15,7 @@ class Module {
 
 /* Private methods definitions */
   _loadControllers () {
-    let controllerPath = Path.normalize(this.currentDir + '/controllers');
+    let controllerPath = Path.normalize(`${this.currentDir}/controllers`);
     if (CustomFS.checkPathSync(controllerPath)) {
       let controllersFiles = CustomFS.getFilesSync(controllerPath);
       for (let i = 0; i < controllersFiles.length; i++) {

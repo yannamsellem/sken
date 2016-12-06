@@ -3,7 +3,7 @@ const { Server } = require('ws');
 
 /* Bins requiering */
 
-const Module = require(global.paths.bin + '/module');
+const Module = require(`${global.paths.bin}/module`);
 
 /* Variables declaration */
 var sockets = null;

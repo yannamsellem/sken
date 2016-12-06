@@ -5,8 +5,8 @@ const socketHandshake = require('socket.io-handshake');
 
 /* Bins requiering */
 
-const Session = require(global.paths.bin + '/session');
-const Module = require(global.paths.bin + '/module');
+const Session = require(`${global.paths.bin}/session`);
+const Module = require(`${global.paths.bin}/module`);
 
 /* Variables declaration */
 var sockets = null;

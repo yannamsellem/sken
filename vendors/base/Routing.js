@@ -23,7 +23,7 @@ class Routing {
   }
 
   _loadFilters () {
-    let filterPath = Path.normalize(this.currentDir + '/filters');
+    let filterPath = Path.normalize(`${this.currentDir}/filters`);
     if (customFS.checkPathSync(filterPath)) {
       let filtersFiles = customFS.getFilesSync(filterPath);
       for (let i = 0; i < filtersFiles.length; i++) {

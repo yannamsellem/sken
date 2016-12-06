@@ -1,6 +1,6 @@
 const Controller = require(paths.vendors).base.controller;
 
-const Databases = require(paths.bin + '/database');
+const Databases = require(`${paths.bin}/database`);
 
 class TestController extends Controller {
   constructor () {

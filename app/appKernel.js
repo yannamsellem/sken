@@ -1,5 +1,5 @@
 /* Bin requiring */
-const Kernel = require(paths.bin + '/kernel');
+const Kernel = require(`${paths.bin}/kernel`);
 
 /* Services requiring */
 const bodyParser = require('body-parser');

@@ -34,7 +34,7 @@ function _init (numberOfRetries, retryMilliSeconds) {
         password: configuration.schema.password
       });
       db.on('error', function (err) {
-        debug('An error occurred:\n' + err);
+        debug(`An error occurred:\n${err}`);
         if (err.code === 'ECONNREFUSED') {
           db = null;
           setTimeout(function () { database._init(--numberOfRetries, retryMilliSeconds); }, retryMilliSeconds);

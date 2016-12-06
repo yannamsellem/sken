@@ -57,9 +57,9 @@ function _init (numberOfRetries, retryMilliSeconds) {
       promise = db.record.get('#1:0')
                 .then(function () {
                   db.state = 'connected';
-                  debug('Connected to database "' + configuration.schema.name + '"');
+                  debug(`Connected to database "${configuration.schema.name}"`);
                   return self;
-                }, function () { debug('"' + configuration.schema.name + '" doesnot exists.'); });
+                }, function () { debug(`"${configuration.schema.name}" doesnot exists.`); });
     } else {
       promise = Promise.resolve(self);
     }

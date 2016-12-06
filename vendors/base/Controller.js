@@ -19,7 +19,7 @@ class Controller {
     return new Promise((resolve, reject) => {
       for (let key in parameters) {
         if (parameters[key] === undefined || parameters[key] === null || (typeof parameters[key] === 'number' && isNaN(parameters[key]))) {
-          reject(Error('Missing ' + key + ' parameters'));
+          reject(Error(`Missing ${key} parameters`));
         }
       }
       resolve(parameters);

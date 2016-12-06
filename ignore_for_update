@@ -1,0 +1,11 @@
+README.md
+.travis.yml
+/server
+/web
+/app/configs
+/app/appKernel.js
+/app/configLoader.js
+.gitignore
+.git
+.github
+yarn.lock

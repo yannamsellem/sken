@@ -3,6 +3,7 @@ node_modules/*
 .idea/
 web/src/assets/**/libraries/*
 npm-debug.log
+yarn-error.log
 
 # System and IDE used
 .idea

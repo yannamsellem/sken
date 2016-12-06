@@ -19,10 +19,7 @@
   ],
   "author": "GhostxRipper",
   "license": "GNU",
-  "repository": {
-    "type": "git",
-    "url": "git+https://bitbucket.org/GhostxRipper/sken.git"
-  },
+  "repository": "https://bitbucket.org/GhostxRipper/sken.git",
   "dependencies": {
     "body-parser": "^1.15.1",
     "compression": "^1.6.2",

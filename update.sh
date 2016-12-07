@@ -11,6 +11,7 @@ function update_sken_in_project {
     git clone https://bitbucket.org/GhostxRipper/sken.git tmp
     rsync --exclude-from 'ignore_for_update' -avz tmp/ ./
     rm -rf tmp
+    git checkout package.json
     yarn
     echo "⚠️check your dependencies⚠️"
 }

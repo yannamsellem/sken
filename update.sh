@@ -12,7 +12,7 @@ function update_sken_in_project {
     rsync --exclude-from 'ignore_for_update' -avz tmp/ ./
     rm -rf tmp
     yarn
-    echo `⚠️check your dependencies⚠️`
+    echo "⚠️check your dependencies⚠️"
 }
 
 if [[ -n "$remote" ]]; then update_from_sken_repo; else update_sken_in_project; fi

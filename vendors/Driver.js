@@ -9,7 +9,7 @@ class Driver {
     let factoriesFolders = fs.readdirSync(paths.server).filter((file) => {
       let pathFile = path.join(paths.server, file);
       return (fs.statSync(pathFile).isDirectory()) && (fs.existsSync(path.join(pathFile, 'factories')));
-    }).map((folder) => path.join(paths.server, folder + '/factories'));
+    }).map((folder) => path.join(paths.server, `${folder}/factories`));
 
     factoriesFolders.forEach((folder) => {
       factories = factories.concat(fs.readdirSync(folder).filter((file) => {

@@ -17,7 +17,7 @@ class MongoDB extends Driver {
   }
 
   static _init () {
-    let url = 'mongodb://' + configuration.host + ':' + configuration.port + '/' + configuration.schema.name;
+    let url = `mongodb://${configuration.host}:${configuration.port}/${configuration.schema.name}`;
 
     let promise = MongoClient.connect(url, {
       db: configuration.schema.options,
@@ -27,10 +27,10 @@ class MongoDB extends Driver {
     })
     .then((_db) => {
       db = _db;
-      debug('Connected to database "' + configuration.schema.name + '"');
+      debug(`Connected to database "${configuration.schema.name}"`);
 
       db.on('error', (err) => {
-        debug('An error occurred:' + err);
+        debug(`An error occurred:${err}`);
       });
 
       /* db.on('close', () => {
@@ -58,7 +58,7 @@ class MongoDB extends Driver {
       return Promise.all(promises).catch((err) => debug('MongoFactory error - [%s]', err.message));
     })
   .catch((err) => {
-    debug('"' + configuration.schema.name + '" does not exists.');
+    debug(`"${configuration.schema.name}" does not exists.`);
     debug(err.message);
     return Promise.reject(err);
   });

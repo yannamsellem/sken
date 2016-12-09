@@ -5,8 +5,8 @@ const { join } = require('path');
 /* Class definition */
 class ErrorHandler {
   logError (error, request, response, next) {
-    let text = '[' + moment().format('YYYY.MM.DD - h:mm:ss') + '] - ';
-    text += (error.status || error.statusCode || '_') + ' - \n\n' + error.stack + '\n\n';
+    let text = `[${moment().format('YYYY.MM.DD - h:mm:ss')}] - `;
+    text += `${error.status || error.statusCode || '_'} - \n\n${error.stack}\n\n`;
 
     console.log(text);
 

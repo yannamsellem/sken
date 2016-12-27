@@ -21,12 +21,19 @@ A simple way to make a http (or https) node js app
   or create one (with init and get functions)
 - Test not implement yet
 - Implement your modules
-- Start the server with npm start
+- Start the server with `yarn start`
 - Enjoy !
+
+#### Hot reloading?
+
+Use `yarn run devserver` for hot reloading
+
+#### You have already your project set up ?
+Update SKEN using `sh update.sh`
 
 ## Contribution guidelines
 
-- implement Karma for angular unit testing
+<!-- - implement Karma for angular unit testing -->
 - implement Jasmine for node.js unit testing
 - implement Bunyan for logging stuff
 
@@ -43,8 +50,8 @@ A simple way to make a http (or https) node js app
     - [ ] OrientBD
   - [ ] Import and export (ES6 versions)
   - [ ] Unit testing
-  - [ ] improve Grunt implementation
-  - [ ] update module: create a script to update SKEN
+  - [ ] improve Grunt implementation (broken)
+  - [x] update module: create a script to update SKEN
 
 ## Who do I talk to?
 

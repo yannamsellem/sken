@@ -28,7 +28,7 @@ A simple way to make a http (or https) node js app
 
 Use `yarn run devserver` for hot reloading
 
-#### You have already your project set up ?
+#### You already have your project setup?
 Update SKEN using `sh update.sh`
 
 ## Contribution guidelines

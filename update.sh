@@ -8,7 +8,7 @@ function update_from_sken_repo {
 
 function update_sken_in_project {
     mkdir tmp
-    git clone https://bitbucket.org/GhostxRipper/sken.git tmp
+    git clone https://github.com/GhostxRipper/sken.git tmp
     rsync --exclude-from 'ignore_for_update' -avz tmp/ ./
     rm -rf tmp
     git checkout package.json

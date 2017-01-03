@@ -14,11 +14,11 @@ in routing file you can access all of your controllers and filters by "this.cont
 
 Example of the tree of a module:
 
-Module/
-    controllers/
-    filters/
-    managers/
-    factories/
-    providers/
-    core.js
-    routing.js
+Module/  
+    controllers/  
+    filters/  
+    managers/  
+    factories/  
+    providers/  
+    core.js  
+    routing.js  

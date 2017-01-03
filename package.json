@@ -5,10 +5,10 @@
   "description": "Starter Kit for Express and Node.js",
   "main": "app/app.js",
   "scripts": {
-    "start": "DEBUG=Sken:*  node app/app.js",
-    "debug": "DEBUG=Sken:* node --debug app/app.js",
+    "start": "NODE_ENV=production node app/app.js",
+    "debug": "DEBUG=Sken:* node --inspect app/app.js",
     "devserver": "DEBUG=Sken:* supervisor --watch server app/app.js",
-    "prestart": "npm install",
+    "prestart": "yarn",
     "postinstall": "# bower install"
   },
   "keywords": [
@@ -25,7 +25,7 @@
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
     "debug": "^2.2.0",
-    "express": "^4.13.4",
+    "express": "^4.15.0",
     "express-session": "^1.13.0",
     "lodash": "^4.13.1",
     "mongodb": "^2.1.18",

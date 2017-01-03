@@ -8,6 +8,7 @@ const express = require('express');
 const pug = require('pug');
 const morgan = require('morgan');
 const errorHandler = require(paths.vendors).errorHandler;
+const crossDomain = require(paths.vendors).crossDomain;
 
 /* Kernel methods overriding */
 
@@ -20,6 +21,7 @@ Kernel.appWillFinishLaunching = (app) => {
   app.use(bodyParser.urlencoded({ extended: true, inflate: true }));
   app.use(bodyParser.json());
   app.use(express.static(global.paths.assets));
+  app.use(crossDomain.get());
   app.use(morgan('dev'));
 };
 

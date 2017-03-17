@@ -3,7 +3,7 @@ const debug = require('debug')('Sken:Sequelize');
 // const { basename } = require('path');
 
 const db = {models: {}};
-const Driver = require(paths.vendors).driver;
+const Driver = require('sken-config-middleware').Driver;
 
 class SequelizeDriver extends Driver {
   static init (configuration = config.databases.sequelize) {

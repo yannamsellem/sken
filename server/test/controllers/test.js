@@ -1,4 +1,4 @@
-const Controller = require(paths.vendors).base.controller;
+const { Controller } = require('sken-server-class');
 
 const Databases = require(`${paths.bin}/database`);
 

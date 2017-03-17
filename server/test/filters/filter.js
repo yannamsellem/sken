@@ -1,4 +1,4 @@
-const Filter = require(paths.vendors).base.filter;
+const { Filter } = require('sken-server-class');
 
 class TestFilter extends Filter {
   constructor () {

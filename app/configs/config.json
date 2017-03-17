@@ -5,6 +5,7 @@
 	},
 	"databases" : {
 		"sequelize": {
+			"module": false,
 			"path": "drivers/sequelize",
 			"name": "sken",
 			"user": "",
@@ -16,6 +17,22 @@
 					"force": true
 				},
 				"logging": null
+			}
+		},
+		"mongodb": {
+			"module": true,
+			"path": "sken-mongodb",
+			"host": "localhost",
+			"port": 27017,
+			"schema": {
+				"name": "sken",
+				"user": "root",
+				"password": "root",
+				"options": {
+					"reconnectTries": 10,
+					"reconnectInterval": 5000,
+					"autoReconnect": true
+				}
 			}
 		}
 	},

@@ -1,7 +1,10 @@
 /* Service requiring */
-
-const CustomFS = require('../vendors/base/utils/fs-utils');
 const path = require('path');
+const fs = require('fs');
+
+const getDirectoriesSync = (srcPath) =>
+  fs.readdirSync(srcPath).filter((file) =>
+  fs.statSync(path.join(srcPath, file)).isDirectory());
 
 /* Class declaration */
 
@@ -19,10 +22,8 @@ class ConstantLoader {
     global.paths.webRoot = path.normalize(`${global.paths.root}/web`);
     global.paths.views = path.normalize(`${global.paths.web}/views`);
     global.paths.assets = path.normalize(`${global.paths.web}/assets`);
-    global.paths.vendors = path.normalize(`${global.paths.root}/vendors`);
-    // global.paths.base = path.normalize(global.paths.vendors + '/base');
 
-    var modules = CustomFS.getDirectoriesSync(global.paths.server);
+    var modules = getDirectoriesSync(global.paths.server);
     for (let i in modules) {
       global.paths.modules[modules[i]] = path.join(global.paths.server, modules[i]);
     }

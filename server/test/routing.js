@@ -1,4 +1,4 @@
-const Routing = require(paths.vendors).base.routing;
+const { Routing } = require('sken-server-class');
 
 class Route extends Routing {
   constructor () {

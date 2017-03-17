@@ -1,4 +1,4 @@
-const Module = require(paths.vendors).base.module;
+const { Module } = require('sken-server-class');
 
 class TestModule extends Module {
   constructor () {

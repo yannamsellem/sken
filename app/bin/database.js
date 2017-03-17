@@ -6,6 +6,8 @@ const path = require('path');
 /* Variable declarations */
 var databases = {};
 
+const requireMiddleware = (path, isModule) => isModule ? require(path).Driver : require(path);
+
 /* Class declarations */
 
 class DbLoader {
@@ -13,10 +15,11 @@ class DbLoader {
     var promises = [Promise.resolve()];
 
     for (var i in global.config.databases) {
-      var currentPath = path.join(__dirname, global.config.databases[i].path);
+      const dbConfig = global.config.databases[i];
+      const currentPath = !dbConfig.module ? path.join(__dirname, dbConfig.path) : dbConfig.path;
       try {
-        databases[i] = require(currentPath);
-        promises.push(databases[i].init());
+        databases[i] = requireMiddleware(currentPath, dbConfig.module);
+        promises.push(databases[i].init(dbConfig));
         debug(`${i} database initialization`);
       } catch (exception) {
         debug(`unable to load the database ${i}`);

@@ -1,4 +1,4 @@
-const MongoFactory = require(paths.vendors).factories.MongoFactory;
+const { MongoFactory } = require('sken-mongodb');
 
 class TestCollection extends MongoFactory {
   constructor () {

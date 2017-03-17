@@ -1,7 +1,8 @@
 {
 	"databases": {
 		"mongodb": {
-			"path": "drivers/mongodb-driver",
+			"module": true,
+			"path": "sken-mongodb",
 			"host": "localhost",
 			"port": 27017,
 			"schema": {
@@ -9,12 +10,10 @@
 				"user": "root",
 				"password": "root",
 				"options": {
-					"numberOfRetries": 10,
-					"retryMilliSeconds": 5000
+					"reconnectTries": 10,
+					"reconnectInterval": 5000,
+					"autoReconnect": true
 				}
-			},
-			"server_options": {
-				"auto_reconnect": true
 			}
 		},
 		"orientdb": {

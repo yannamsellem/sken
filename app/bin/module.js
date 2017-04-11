@@ -8,11 +8,11 @@ var modules = {};
 /* Class declarations */
 class ModuleLoader {
   static init (app) {
-    for (let i in global.paths.modules) {
+    for (const i in global.paths.modules) {
       try {
-        let path = Path.normalize(`${global.paths.modules[i]}/core`);
-        let M = require(path);
-        let module = new M();
+        const path = Path.normalize(`${global.paths.modules[i]}/core`);
+        const M = require(path);
+        const module = new M();
         modules[module._name] = module;
         module.init(app);
         debug(`module ${module._name} initialized`);

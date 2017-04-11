@@ -22,7 +22,7 @@ function init (config) {
 }
 
 function _init (numberOfRetries, retryMilliSeconds) {
-  let self = this;
+  const self = this;
   let promise;
   if (numberOfRetries > 0) {
     if (!db) {

@@ -12,10 +12,10 @@ class SequelizeDriver extends Driver {
   }
 
   static _init (configuration) {
-    let sequelize = new Sequelize(configuration.name, configuration.user, configuration.password, configuration.options);
+    const sequelize = new Sequelize(configuration.name, configuration.user, configuration.password, configuration.options);
 
     return sequelize.authenticate().then(() => {
-      let factories = this.getFactoriesDirectories();
+      const factories = this.getFactoriesDirectories();
       factories.forEach((file) => {
         try {
           const model = sequelize.import(file);

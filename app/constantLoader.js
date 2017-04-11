@@ -24,7 +24,7 @@ class ConstantLoader {
     global.paths.assets = path.normalize(`${global.paths.web}/assets`);
 
     var modules = getDirectoriesSync(global.paths.server);
-    for (let i in modules) {
+    for (const i in modules) {
       global.paths.modules[modules[i]] = path.join(global.paths.server, modules[i]);
     }
   }

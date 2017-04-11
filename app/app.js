@@ -3,8 +3,8 @@ const express = require('express');
 const debug = require('debug')('Sken:app');
 const { join } = require('path');
 
-let app = express();
-let server = http.Server(app);
+const app = express();
+const server = http.Server(app);
 
 require(join(__dirname, '/constantLoader')).init();
 require(join(__dirname, '/configLoader')).init();

@@ -2,7 +2,7 @@
   "parserOptions": {
     "ecmaVersion": 6,
     "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
+      "experimentalObjectRestSpread": true
     },
     "sourceType": "module"
   },
@@ -12,7 +12,8 @@
   },
   "plugins": [
     "standard",
-    "promise"
+    "promise",
+    "security"
   ],
   "globals": {
     "document": false,
@@ -20,7 +21,7 @@
     "window": false,
     "config": true,
     "parameters": true,
-    "paths": true,
+    "paths": true
   },
   "rules": {
     "accessor-pairs": 2,

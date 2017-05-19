@@ -4,7 +4,7 @@ class TestModule extends Module {
   constructor () {
     super(__dirname);
 
-    this._name = 'Test';
+    this._name = 'Sample';
     this._routing = true;
   }
 

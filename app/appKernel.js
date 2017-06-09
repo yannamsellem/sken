@@ -25,6 +25,10 @@ Kernel.appWillFinishLaunching = (app) => {
 };
 
 Kernel.appDidFinishLaunching = (app) => {
+  app.use((req, res, next) => {
+    req.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    next();
+  });
   ErrorHandler.set(app);
 };
 

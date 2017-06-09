@@ -59,6 +59,23 @@
 					"force": true
 				}
 			}
+		},
+		"mongoose": {
+			"module": false,
+			"path": "drivers/mongoose",
+			"name": "sken",
+			"host": "localhost",
+			"port": 27017,
+			"options": {
+				"db": { "native_parser": true },
+				"server": {
+					"autoReconnect": true,
+					"reconnectTries": 10,
+					"reconnectInterval": 1000
+				},
+				"user": "",
+  			"pass": ""
+			}
 		}
 	}
 }

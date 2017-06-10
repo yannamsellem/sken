@@ -8,11 +8,11 @@ class TestController extends Controller {
 
     this._name = 'Test';
 
-    Databases.get('sequelize').then((db) => {
-      this.factories = {
-        Model: db.models.Model
-      };
-    }).catch(console.log);
+    // Databases.get('sequelize').then((db) => {
+    //   this.factories = {
+    //     Model: db.models.Model
+    //   };
+    // }).catch(console.log);
   }
 
   init (app) {

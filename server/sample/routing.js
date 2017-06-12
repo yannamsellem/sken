@@ -16,9 +16,7 @@ class Route extends Routing {
     router.post('/users', this.controllers.test.post.user)
   }
 
-  socketInit (sockets, socket, session) {
-
-  }
+  socketInit (sockets, socket, session) {}
 }
 
 module.exports = Route

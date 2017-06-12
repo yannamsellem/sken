@@ -10,7 +10,16 @@
     "devserver": "DEBUG=Sken:* nodemon --watch server app/app.js",
     "prestart": "yarn",
     "postinstall": "# bower install",
-    "lint": "eslint --fix app/** server/**"
+    "lint": "eslint --fix app/** server/**",
+    "prettier": "prettier --write --no-semi --single-quote --trailing-comma es5 server/**/*.js && eslint --fix server/",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --no-semi --single-quote --trailing-comma es5",
+      "eslint --fix",
+      "git add"
+    ]
   },
   "keywords": [
     "node",
@@ -58,8 +67,11 @@
     "grunt-jade-usemin": "^1.2.0",
     "grunt-spritesmith": "^6.3.1",
     "grunt-usemin": "^3.1.1",
+    "husky": "^0.13.4",
     "jit-grunt": "^0.10.0",
+    "lint-staged": "^3.6.1",
     "nodemon": "^1.11.0",
+    "prettier": "^1.4.4",
     "time-grunt": "^1.3.0"
   }
 }

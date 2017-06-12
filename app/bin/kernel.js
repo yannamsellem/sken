@@ -37,7 +37,9 @@ class Kernel {
   }
 
   /* Private methods definitions */
-  _$appWillFinishLaunching () { return Promise.resolve() }
+  _$appWillFinishLaunching () {
+    return Promise.resolve()
+  }
   _$appDidFinishLaunching () {}
   _$dbDidFinishLoading () {}
 
@@ -67,27 +69,31 @@ class Kernel {
     this.server = server
 
     Promise.resolve()
-    .then(() => this
-    .appWillFinishLaunching()).then(() => {
-      if (global.config.session && global.config.session.enabled) {
-        Session.init().setSession(this.app)
-      }
+      .then(() => this.appWillFinishLaunching())
+      .then(() => {
+        if (global.config.session && global.config.session.enabled) {
+          Session.init().setSession(this.app)
+        }
 
-      var dbPromise = Database.init().catch((error) => {
-        debug(`an error occurred during the kernel database initialization: ${error.toString()}`)
-        throw error
+        var dbPromise = Database.init().catch(error => {
+          debug(
+            `an error occurred during the kernel database initialization: ${error.toString()}`
+          )
+          throw error
+        })
+
+        dbPromise.then(() => this._initializeModules())
+
+        return dbPromise
       })
-
-      dbPromise.then(() => this._initializeModules())
-
-      return dbPromise
-    })
-    .then(() => this.dbDidFinishLoading())
-    .then(() => this.appDidFinishLaunching())
-    .catch((error) => {
-      debug(`an error occurred during the kernel initialization: ${error.toString()}`)
-      process.exit(1)
-    })
+      .then(() => this.dbDidFinishLoading())
+      .then(() => this.appDidFinishLaunching())
+      .catch(error => {
+        debug(
+          `an error occurred during the kernel initialization: ${error.toString()}`
+        )
+        process.exit(1)
+      })
   }
 }
 

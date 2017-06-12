@@ -6,7 +6,8 @@ const path = require('path')
 /* Variable declarations */
 var databases = {}
 
-const requireMiddleware = (path, isModule) => isModule ? require(path).Driver : require(path)
+const requireMiddleware = (path, isModule) =>
+  isModule ? require(path).Driver : require(path)
 
 /* Class declarations */
 
@@ -16,7 +17,9 @@ class DbLoader {
 
     for (var i in global.config.databases) {
       const dbConfig = global.config.databases[i]
-      const currentPath = !dbConfig.module ? path.join(__dirname, dbConfig.path) : dbConfig.path
+      const currentPath = !dbConfig.module
+        ? path.join(__dirname, dbConfig.path)
+        : dbConfig.path
       try {
         databases[i] = requireMiddleware(currentPath, dbConfig.module)
         promises.push(databases[i].init(dbConfig))

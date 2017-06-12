@@ -22,7 +22,7 @@ class ModuleLoader {
     }
   }
 
-/**
+  /**
 * initialize the socket part of each modules
 * @param  {sockets} sockets socket server instance
 * @param  {socket} socket private socket

@@ -11,7 +11,7 @@ const { ErrorHandler, CrossDomain } = require('sken-config-middleware')
 
 /* Kernel methods overriding */
 
-Kernel.appWillFinishLaunching = (app) => {
+Kernel.appWillFinishLaunching = app => {
   app.disable('x-powered-by')
   app.engine('pug', pug.__express)
   app.set('view engine', 'pug')
@@ -24,7 +24,7 @@ Kernel.appWillFinishLaunching = (app) => {
   app.use(morgan('dev'))
 }
 
-Kernel.appDidFinishLaunching = (app) => {
+Kernel.appDidFinishLaunching = app => {
   app.use((req, res, next) => {
     req.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
     next()

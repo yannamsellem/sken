@@ -1,9 +1,9 @@
-const { Routing } = require('sken-server-class');
+const { Routing } = require('sken-server-class')
 
 class Route extends Routing {
   constructor () {
-    super();
-    this._prefix = '/api';
+    super()
+    this._prefix = '/api'
   }
 
   // init(app, controllers) {
@@ -12,8 +12,8 @@ class Route extends Routing {
   // }
 
   declare (router) {
-    router.get('/users/:id', this.controllers.test.get.user);
-    router.post('/users', this.controllers.test.post.user);
+    router.get('/users/:id', this.controllers.test.get.user)
+    router.post('/users', this.controllers.test.post.user)
   }
 
   socketInit (sockets, socket, session) {
@@ -21,4 +21,4 @@ class Route extends Routing {
   }
 }
 
-module.exports = Route;
+module.exports = Route

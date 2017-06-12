@@ -1,15 +1,15 @@
-const { Filter } = require('sken-server-class');
+const { Filter } = require('sken-server-class')
 
 class TestFilter extends Filter {
   constructor () {
-    super();
-    this._name = 'test';
+    super()
+    this._name = 'test'
   }
 
   test (request, response, next) {
-    console.log('Test was here!');
-    next();
+    console.log('Test was here!')
+    next()
   }
 }
 
-module.exports = TestFilter;
+module.exports = TestFilter

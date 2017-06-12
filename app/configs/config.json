@@ -7,9 +7,9 @@
 		"mongoose": {
 			"module": false,
 			"path": "drivers/mongoose",
-			"name": "moviequest",
-			"host": "528eba60-59c0-4014-8fb6-73f96128abf6.pdb.ovh.net",
-			"port": 21952,
+			"name": "sken",
+			"host": "localhost",
+			"port": 27017,
 			"options": {
 				"db": { "native_parser": true },
 				"server": {
@@ -17,8 +17,8 @@
 					"reconnectTries": 10,
 					"reconnectInterval": 1000
 				},
-				"user": "test",
-  			"pass": "test1234"
+				"user": "",
+  			"pass": ""
 			}
 		}
 	},

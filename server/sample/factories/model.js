@@ -1,15 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
-  let Model = sequelize.define('Model',
+  const Model = sequelize.define('Model',
     {
       name: {
         type: DataTypes.STRING,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     }, {
       classMethods: {
-        associate: (models) => {}
-      }
-    });
+        associate: (models) => {},
+      },
+    })
 
-  return Model;
-};
+  return Model
+}

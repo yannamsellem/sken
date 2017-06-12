@@ -1,17 +1,17 @@
-const { MongoFactory } = require('sken-mongodb');
+const { MongoFactory } = require('sken-mongodb')
 
 class TestCollection extends MongoFactory {
   constructor () {
-    super();
+    super()
 
-    this._name = 'Test';
-    this._collectionName = 'test';
-    this._listen = true;
+    this._name = 'Test'
+    this._collectionName = 'test'
+    this._listen = true
 
     // Model
-    this.model._id = '';
-    this.model.name = '';
+    this.model._id = ''
+    this.model.name = ''
   }
 }
 
-module.exports = TestCollection;
+module.exports = TestCollection

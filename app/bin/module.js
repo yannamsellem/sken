@@ -1,23 +1,23 @@
 /* Services requiring */
-const Path = require('path');
-const debug = require('debug')('Sken:module');
+const Path = require('path')
+const debug = require('debug')('Sken:module')
 
 /* Variables declarations */
-var modules = {};
+var modules = {}
 
 /* Class declarations */
 class ModuleLoader {
   static init (app) {
     for (const i in global.paths.modules) {
       try {
-        const path = Path.normalize(`${global.paths.modules[i]}/core`);
-        const M = require(path);
-        const module = new M();
-        modules[module._name] = module;
-        module.init(app);
-        debug(`module ${module._name} initialized`);
+        const path = Path.normalize(`${global.paths.modules[i]}/core`)
+        const M = require(path)
+        const module = new M()
+        modules[module._name] = module
+        module.init(app)
+        debug(`module ${module._name} initialized`)
       } catch (exception) {
-        debug(`unable to load the module ${i}: ${exception.message}`);
+        debug(`unable to load the module ${i}: ${exception.message}`)
       }
     }
   }
@@ -30,9 +30,9 @@ class ModuleLoader {
 */
   static socketInit (sockets, socket, session) {
     for (var i in modules) {
-      modules[i].socketInit(sockets, socket, session);
+      modules[i].socketInit(sockets, socket, session)
     }
   }
 }
 
-module.exports = ModuleLoader;
+module.exports = ModuleLoader

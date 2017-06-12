@@ -1,11 +1,11 @@
 /* Requiring stuff */
-const expressSession = require('express-session');
-const RedisStore = require('connect-redis')(expressSession);
+const expressSession = require('express-session')
+const RedisStore = require('connect-redis')(expressSession)
 // const debug = require('debug')('Sken:Redis');
 // const redis = require('redis');
 // const client = redis.createClient({host: 'localhost', port: 6379});
-const options = global.config.session.storeOptions;
-const sessionStore = new RedisStore({ host: options.host, port: options.port });
+const options = global.config.session.storeOptions
+const sessionStore = new RedisStore({ host: options.host, port: options.port })
 
 /* Object constructor and methods declaration */
 
@@ -16,14 +16,14 @@ class Session {
       key: global.config.session.key,
       secret: global.config.session.secret,
       resave: true,
-      saveUninitialized: true
-    });
+      saveUninitialized: true,
+    })
   }
 
-  static get sessionStore () { return sessionStore; }
+  static get sessionStore () { return sessionStore }
 }
 
-module.exports = Session;
+module.exports = Session
 
 /* Redis Events */
 

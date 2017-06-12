@@ -1,94 +1,96 @@
 /* Bin requiring */
 
-const Module = require(`${__dirname}/module`);
-const Database = require(`${__dirname}/database`);
-const Session = require(`${__dirname}/session`);
-const Websocket = require(`${__dirname}/websocket`);
-const debug = require('debug')('Sken:kernel');
+const Module = require(`${__dirname}/module`)
+const Database = require(`${__dirname}/database`)
+const Session = require(`${__dirname}/session`)
+const Websocket = require(`${__dirname}/websocket`)
+const debug = require('debug')('Sken:kernel')
 
 /* Class declaration */
 
 class Kernel {
   constructor () {
-    this.app = null;
-    this.server = null;
+    this.app = null
+    this.server = null
   }
 
   /* Properties declarations */
   get appWillFinishLaunching () {
-    return this._appWillFinishLaunching;
+    return this._appWillFinishLaunching
   }
   set appWillFinishLaunching (fn) {
-    this._$appWillFinishLaunching = fn;
+    this._$appWillFinishLaunching = fn
   }
 
   get appDidFinishLaunching () {
-    return this._appDidFinishLaunching;
+    return this._appDidFinishLaunching
   }
   set appDidFinishLaunching (fn) {
-    this._$appDidFinishLaunching = fn;
+    this._$appDidFinishLaunching = fn
   }
 
   get dbDidFinishLoading () {
-    return this._dbDidFinishLoading;
+    return this._dbDidFinishLoading
   }
   set dbDidFinishLoading (fn) {
-    this._$dbDidFinishLoading = fn;
+    this._$dbDidFinishLoading = fn
   }
 
   /* Private methods definitions */
-  _$appWillFinishLaunching () { return Promise.resolve(); }
+  _$appWillFinishLaunching () { return Promise.resolve() }
   _$appDidFinishLaunching () {}
   _$dbDidFinishLoading () {}
 
   _appWillFinishLaunching () {
-    debug('appWillFinishLaunching');
-    return this._$appWillFinishLaunching(this.app, this.server);
+    debug('appWillFinishLaunching')
+    return this._$appWillFinishLaunching(this.app, this.server)
   }
   _appDidFinishLaunching () {
-    debug('appDidFinishLaunching');
-    return this._$appDidFinishLaunching(this.app, this.server);
+    debug('appDidFinishLaunching')
+    return this._$appDidFinishLaunching(this.app, this.server)
   }
   _dbDidFinishLoading () {
-    debug('dbDidFinishLoading');
-    return this._$dbDidFinishLoading(this.app, this.server, Database);
+    debug('dbDidFinishLoading')
+    return this._$dbDidFinishLoading(this.app, this.server, Database)
   }
   _initializeModules () {
-    Module.init(this.app);
+    Module.init(this.app)
     if (global.config.websocket && global.config.websocket.enabled) {
-      Websocket.init(this.app, this.server);
+      Websocket.init(this.app, this.server)
     }
   }
 
   /* Methods definitions */
 
   init (app, server) {
-    this.app = app;
-    this.server = server;
+    this.app = app
+    this.server = server
 
     Promise.resolve()
     .then(() => this
     .appWillFinishLaunching()).then(() => {
       if (global.config.session && global.config.session.enabled) {
-        Session.init().setSession(this.app);
+        Session.init().setSession(this.app)
       }
 
       var dbPromise = Database.init().catch((error) => {
-        debug(`an error occurred during the kernel database initialization: ${error.toString()}`);
-      });
+        debug(`an error occurred during the kernel database initialization: ${error.toString()}`)
+        throw error
+      })
 
-      dbPromise.then(() => this._initializeModules());
+      dbPromise.then(() => this._initializeModules())
 
-      return dbPromise;
+      return dbPromise
     })
     .then(() => this.dbDidFinishLoading())
     .then(() => this.appDidFinishLaunching())
     .catch((error) => {
-      debug(`an error occurred during the kernel initialization: ${error.toString()}`);
-    });
+      debug(`an error occurred during the kernel initialization: ${error.toString()}`)
+      process.exit(1)
+    })
   }
 }
 
 /* Module exportation */
 
-module.exports = new Kernel();
+module.exports = new Kernel()

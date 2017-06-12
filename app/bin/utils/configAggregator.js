@@ -1,22 +1,22 @@
 /* Services requiring */
 
-const path = require('path');
+const path = require('path')
 
 /* Class declaration */
 
 class ConfigAggregator {
   static aggregate (prefix = 'config', target = '_') {
-    let configJson = {};
-    const configPath = path.normalize(`${global.paths.app}/configs/${prefix}.json`);
+    let configJson = {}
+    const configPath = path.normalize(`${global.paths.app}/configs/${prefix}.json`)
 
     try {
-      configJson = require(configPath);
+      configJson = require(configPath)
     } catch (exception) {
-      throw Error('server configuration not found');
+      throw Error('server configuration not found')
     }
 
-    global[target] = configJson;
+    global[target] = configJson
   }
 }
 
-module.exports = ConfigAggregator;
+module.exports = ConfigAggregator

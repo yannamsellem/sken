@@ -1,7 +1,7 @@
-module.exports = WatchTasks;
+module.exports = WatchTasks
 
 function WatchTasks (grunt) {
-  var config = {};
+  var config = {}
 /* WATCH */
   config.watch = {
     css: {
@@ -13,7 +13,7 @@ function WatchTasks (grunt) {
       }],
       tasks: ['sass']
     }
-  };
+  }
 
-  return config;
+  return config
 }

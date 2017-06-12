@@ -1,14 +1,14 @@
 // sprite & imagemin
-module.exports = ImageTasks;
+module.exports = ImageTasks
 
 function ImageTasks (grunt) {
-  var config = {};
+  var config = {}
 /* SPRITE */
-  config.sprite = {};
+  config.sprite = {}
   config.sprite.dev = {
-    'src': [global.paths.webSrc + '/assets/images/sprite_sources/*'],
-    'dest': global.paths.webSrc + '/assets/images/sprite.png',
-    'destCss': global.paths.webSrc + '/assets/styles/imgConsts.scss',
+    'src': [`${global.paths.webSrc}/assets/images/sprite_sources/*`],
+    'dest': `${global.paths.webSrc}/assets/images/sprite.png`,
+    'destCss': `${global.paths.webSrc}/assets/styles/imgConsts.scss`,
     'imgPath': '/images/sprite.png',
     'algorithm': 'binary-tree',
     'padding': 4,
@@ -19,11 +19,11 @@ function ImageTasks (grunt) {
       'format': 'png',
       'timeout': 10000
     }
-  };
+  }
   config.sprite.dist = {
-    'src': [global.paths.webSrc + '/assets/images/sprite_sources/*'],
-    'dest': global.paths.webDist + '/assets/images/sprite.png',
-    'destCss': global.paths.webSrc + '/assets/styles/imgConsts.scss',
+    'src': [`${global.paths.webSrc}/assets/images/sprite_sources/*`],
+    'dest': `${global.paths.webDist}/assets/images/sprite.png`,
+    'destCss': `${global.paths.webSrc}/assets/styles/imgConsts.scss`,
     'imgPath': '/images/sprite.png',
     'algorithm': 'binary-tree',
     'padding': 4,
@@ -35,7 +35,7 @@ function ImageTasks (grunt) {
       'format': 'png',
       'timeout': 10000
     }
-  };
+  }
 
 /* IMAGEMIN */
   config.imagemin = {
@@ -45,11 +45,11 @@ function ImageTasks (grunt) {
       },
       files: [{
         expand: true,
-        cwd: global.paths.webDist + '/assets/images/',
+        cwd: `${global.paths.webDist}/assets/images/`,
         src: ['**/*.{png,jpg,gif,svg}'],
-        dest: global.paths.webDist + '/assets/images/'
+        dest: `${global.paths.webDist}/assets/images/`
       }]
     }
-  };
-  return config;
+  }
+  return config
 }

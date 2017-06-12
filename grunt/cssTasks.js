@@ -1,20 +1,20 @@
 // sass & cssin
-module.exports = CssTasks;
+module.exports = CssTasks
 
 function CssTasks (grunt) {
-  var config = {};
+  var config = {}
 /* CSSMIN */
   config.cssmin = {
     all: {
       files: [{
         expand: true,
-        cwd: global.paths.webSrc + '/assets/styles',
+        cwd: `${global.paths.webSrc}/assets/styles`,
         src: ['*.css', '!*.min.css', '!librabries/**/*'],
-        dest: global.paths.webDist + '/assets/styles',
+        dest: `${global.paths.webDist}/assets/styles`,
         ext: '.min.css'
       }]
     }
-  };
+  }
 /* SASS */
   config.sass = {
     app: {
@@ -23,13 +23,13 @@ function CssTasks (grunt) {
       },
       files: [{
         expand: true,
-        cwd: global.paths.webSrc + '/assets/styles/',
+        cwd: `${global.paths.webSrc}/assets/styles/`,
         src: ['**/*.scss'],
-        dest: global.paths.webSrc + '/assets/styles/',
+        dest: `${global.paths.webSrc}/assets/styles/`,
         ext: '.css'
       }]
     }
-  };
+  }
 
-  return config;
+  return config
 }

@@ -1,7 +1,7 @@
-module.exports = UtilsTasks;
+module.exports = UtilsTasks
 
 function UtilsTasks (grunt) {
-  var config = {};
+  var config = {}
 
 /* CONCAT */
   config.concat = {
@@ -10,33 +10,33 @@ function UtilsTasks (grunt) {
       stripBanners: true,
       banner: '/*! <%= package.name %> - v<%= package.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */'
     }
-  };
+  }
 
 /* COPY */
-  config.copy = {};
+  config.copy = {}
   config.copy.webSrcFontsToWebDist = {
     files: [
       {
         expand: true,
-        cwd: global.paths.webSrc + '/assets/fonts',
+        cwd: `${global.paths.webSrc}/assets/fonts`,
         src: ['**'],
-        dest: global.paths.webDist + '/assets/fonts'
+        dest: `${global.paths.webDist}/assets/fonts`
       }
     ]
-  };
+  }
   config.copy.webSrcImagesToWebDist = {
     files: [
       {
         expand: true,
-        cwd: global.paths.webSrc + '/assets/images',
+        cwd: `${global.paths.webSrc}/assets/images`,
         src: ['**', '!**/sprite_sources/**'],
-        dest: global.paths.webDist + '/assets/images'
+        dest: `${global.paths.webDist}/assets/images`
       }
     ]
-  };
+  }
 
 /* CLEAN */
-  config.clean = {};
+  config.clean = {}
   config.clean.generatedCssFilesSrc = {
     files: [{
       expand: true,
@@ -44,7 +44,7 @@ function UtilsTasks (grunt) {
       src: ['**/*.css', '**/*.css.map', '!**/libraries/**/*'],
       dest: global.paths.webSrc
     }]
-  };
+  }
 
   config.clean.generatedJSFilesDist = {
     files: [{
@@ -53,7 +53,7 @@ function UtilsTasks (grunt) {
       src: ['**/*.js', '!**/libraries/**/*'],
       dest: global.paths.webDist
     }]
-  };
+  }
 
   config.clean.webDist = {
     files: [{
@@ -62,6 +62,6 @@ function UtilsTasks (grunt) {
       src: ['dist'],
       dest: global.paths.webRoot
     }]
-  };
-  return config;
+  }
+  return config
 }

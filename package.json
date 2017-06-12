@@ -9,7 +9,8 @@
     "debug": "DEBUG=Sken:* node --inspect app/app.js",
     "devserver": "DEBUG=Sken:* supervisor --watch server app/app.js",
     "prestart": "yarn",
-    "postinstall": "# bower install"
+    "postinstall": "# bower install",
+    "lint": "eslint --fix **/*.js"
   },
   "keywords": [
     "node",

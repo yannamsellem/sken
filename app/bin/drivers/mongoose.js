@@ -8,13 +8,16 @@ const db = { models: {} }
 
 class MongooseDriver extends Driver {
   static init (configuration = config.databases.mongoose) {
-    configuration.options.logging = configuration.options.logging !== undefined ? configuration.options.logging : debug
+    configuration.options.logging = configuration.options.logging !== undefined
+      ? configuration.options.logging
+      : debug
     return this._init(configuration)
   }
 
   static _init (configuration) {
     const { host, port, name, options } = configuration
-    return mongoose.connect(`mongodb://${host}:${port}/${name}`, options)
+    return mongoose
+      .connect(`mongodb://${host}:${port}/${name}`, options)
       .then(() => {
         debug(`Connected to database "${name}"`)
         const factories = this.getFactoriesDirectories()

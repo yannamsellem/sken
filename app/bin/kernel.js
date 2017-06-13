@@ -77,7 +77,8 @@ class Kernel {
 
         var dbPromise = Database.init().catch(error => {
           debug(
-            `an error occurred during the kernel database initialization: ${error.toString()}`
+            `an error occurred during the kernel database initialization:
+              ${error.toString()}`
           )
           throw error
         })
@@ -90,7 +91,8 @@ class Kernel {
       .then(() => this.appDidFinishLaunching())
       .catch(error => {
         debug(
-          `an error occurred during the kernel initialization: ${error.toString()}`
+          `an error occurred during the kernel initialization:
+            ${error.toString()}`
         )
         process.exit(1)
       })

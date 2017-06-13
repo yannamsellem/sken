@@ -18,7 +18,10 @@ module.exports = database
 
 function init (config) {
   configuration = config || global.config.databases.mysql
-  return this._init(configuration.database_options.numberOfRetries, configuration.database_options.retryMilliSeconds)
+  return this._init(
+    configuration.database_options.numberOfRetries,
+    configuration.database_options.retryMilliSeconds
+  )
 }
 
 function _init (numberOfRetries, retryMilliSeconds) {
@@ -37,19 +40,26 @@ function _init (numberOfRetries, retryMilliSeconds) {
         debug(`An error occurred:\n${err}`)
         if (err.code === 'ECONNREFUSED') {
           db = null
-          setTimeout(function () { database._init(--numberOfRetries, retryMilliSeconds) }, retryMilliSeconds)
+          setTimeout(function () {
+            database._init(--numberOfRetries, retryMilliSeconds)
+          }, retryMilliSeconds)
         }
       })
 
-      // Wrote queries with parameter db.query("UPDATE posts SET title = :title", { title: "Hello!" });
+      /* Wrote queries with parameter
+        sample:
+        db.query("UPDATE posts SET title = :title", { title: "Hello!" }); */
       db.config.queryFormat = function (query, values) {
         if (!values) return query
-        return query.replace(/:(\w+)/g, function (txt, key) {
-          if (values.hasOwnProperty(key)) {
-            return this.escape(values[key])
-          }
-          return txt
-        }.bind(this))
+        return query.replace(
+          /:(\w+)/g,
+          function (txt, key) {
+            if (values.hasOwnProperty(key)) {
+              return this.escape(values[key])
+            }
+            return txt
+          }.bind(this)
+        )
       }
 
       db.connect()

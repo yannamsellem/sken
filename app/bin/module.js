@@ -26,7 +26,8 @@ class ModuleLoader {
 * initialize the socket part of each modules
 * @param  {sockets} sockets socket server instance
 * @param  {socket} socket private socket
-* @param  {session} session [optional] user session related to the private socket
+* @param  {session} session [optional] :
+* user session related to the private socket
 */
   static socketInit (sockets, socket, session) {
     for (var i in modules) {

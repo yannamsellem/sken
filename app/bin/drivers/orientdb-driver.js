@@ -18,7 +18,10 @@ module.exports = DATABASE
 /* Load config */
 function init (config) {
   configuration = config || global.config.databases.orientdb
-  this._init(configuration.database_options.numberOfRetries, configuration.database_options.retryMilliSeconds)
+  this._init(
+    configuration.database_options.numberOfRetries,
+    configuration.database_options.retryMilliSeconds
+  )
 }
 
 /* private init */
@@ -27,7 +30,7 @@ function _init (numberOfRetries, retryMilliSeconds) {
   let promise
   if (numberOfRetries > 0) {
     if (!db) {
-            // Create the connection to the OrientDB server
+      // Create the connection to the OrientDB server
       var server = OrientDB({
         host: configuration.host,
         port: configuration.port,
@@ -35,7 +38,7 @@ function _init (numberOfRetries, retryMilliSeconds) {
         password: configuration.password,
       })
 
-            // Create the connection to the DB
+      // Create the connection to the DB
       db = server.use({
         name: configuration.schema.name,
         username: configuration.schema.user,
@@ -45,21 +48,28 @@ function _init (numberOfRetries, retryMilliSeconds) {
       db.state = 'disconnected'
 
       db.server.transport.connection.handleSocketError = function (err) {
-        if (err) {}
+        if (err) {
+        }
         this.cancel('Connection error')
 
         this.destroySocket()
         db = null
-        setTimeout(function () { DATABASE._init(--numberOfRetries, retryMilliSeconds) }, retryMilliSeconds)
+        setTimeout(function () {
+          DATABASE._init(--numberOfRetries, retryMilliSeconds)
+        }, retryMilliSeconds)
       }
 
-            // try to connect to the DB
-      promise = db.record.get('#1:0')
-                .then(function () {
-                  db.state = 'connected'
-                  debug(`Connected to database "${configuration.schema.name}"`)
-                  return self
-                }, function () { debug(`"${configuration.schema.name}" doesnot exists.`) })
+      // try to connect to the DB
+      promise = db.record.get('#1:0').then(
+        function () {
+          db.state = 'connected'
+          debug(`Connected to database "${configuration.schema.name}"`)
+          return self
+        },
+        function () {
+          debug(`"${configuration.schema.name}" doesnot exists.`)
+        }
+      )
     } else {
       promise = Promise.resolve(self)
     }

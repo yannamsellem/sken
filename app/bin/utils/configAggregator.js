@@ -1,13 +1,13 @@
 /* Services requiring */
 
-const path = require('path')
+const { normalize } = require('path')
 
 /* Class declaration */
 
 class ConfigAggregator {
   static aggregate (prefix = 'config', target = '_') {
     let configJson = {}
-    const configPath = path.normalize(`${global.paths.app}/configs/${prefix}.json`)
+    const configPath = normalize(`${global.paths.app}/configs/${prefix}.json`)
 
     try {
       configJson = require(configPath)

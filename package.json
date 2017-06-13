@@ -43,7 +43,6 @@
     "pug": "^2.0.0-beta2",
     "sequelize": "^3.23.3",
     "sken-config-middleware": "git+ssh://git@github.com/GhostxRipper/sken-config-middleware.git",
-    "sken-mongodb": "git+ssh://git@github.com/GhostxRipper/sken-mongodb.git",
     "sken-server-class": "git+ssh://git@github.com/GhostxRipper/sken-server-class.git",
     "socket.io": "^1.4.6",
     "socket.io-handshake": "0.0.10",
